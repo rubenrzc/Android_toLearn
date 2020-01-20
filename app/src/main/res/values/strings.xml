@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">2dam2curious.toLearn</string>
+    <string name="tittle">.ToLearn();</string>
+    <string name="username">Username</string>
+    <string name="pwd">Password</string>
+    <string name="login">LogIn</string>
+    <string name="recover">Recover password</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Fragments -->
+    <!-- Profile -->
+    <string name="btnNewImage">change profile picture</string>
+    <string name="tvUsernameProfile">Username: </string>
+    <string name="tvEmail">Email: </string>
+    <string name="tvFullname">Fullname: </string>
+    <string name="tvBithDate">Birth date: </string>
+    <string name="tvCompany">Company: </string>
+    <string name="tvCompProf">User company </string>
+
+
+    <!-- New Doc -->
+    <string name="etTittle">Tittle</string>
+    <string name="multilineEtDesc">Description</string>
+    <string name="bntUpload">Upload document</string>
+    <string name="btnDiscard">Discard</string>
+    <string name="visible">Visible</string>
+    <string name="area">Select area</string>
+
+    <!-- New Doc -->
+    <string name="search">Search</string>
+
+
+</resources>

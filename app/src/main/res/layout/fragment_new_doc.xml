@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.NewDocFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/etTittle"
+            android:layout_width="283dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="72dp"
+            android:ems="10"
+            android:textSize="24dp"
+            android:hint="@string/etTittle"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/multilineEtDesc"
+            android:layout_width="294dp"
+            android:layout_height="119dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/multilineEtDesc"
+            android:inputType="textMultiLine"
+            app:layout_constraintBottom_toTopOf="@+id/bntUpload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etTittle"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageButton
+            android:id="@+id/imgBtnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:background="@null"
+            android:src="@drawable/ic_note_add_black_24dp"
+            app:layout_constraintBottom_toTopOf="@+id/bntUpload"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/multilineEtDesc"
+            app:layout_constraintVertical_bias="0.727" />
+
+        <Button
+            android:id="@+id/bntUpload"
+            android:layout_width="286dp"
+            android:layout_height="54dp"
+            android:layout_marginBottom="128dp"
+            android:text="@string/bntUpload"
+            android:textSize="20dp
+"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnDiscard"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnDiscard"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bntUpload" />
+
+        <RadioButton
+            android:id="@+id/rButtonVisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/visible"
+            app:layout_constraintBottom_toTopOf="@+id/bntUpload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.69"
+            app:layout_constraintStart_toEndOf="@+id/imgBtnAdd"
+            app:layout_constraintTop_toBottomOf="@+id/multilineEtDesc"
+            app:layout_constraintVertical_bias="0.69" />
+
+
+        <Spinner
+            android:id="@+id/spinnerArea"
+            android:layout_width="291dp"
+            android:layout_height="72dp"
+            app:layout_constraintBottom_toTopOf="@+id/bntUpload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/multilineEtDesc"
+            app:layout_constraintVertical_bias="0.241"
+            android:spinnerMode="dialog"
+            android:prompt="@string/area"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
