@@ -1,22 +1,34 @@
 package com.example.tolearn.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tolearn.MainActivity;
+import com.example.tolearn.MenuActivity;
 import com.example.tolearn.R;
+import com.example.tolearn.interfaces.UserInterface;
+import com.example.tolearn.pojos.User;
+import com.example.tolearn.retrofit.UserAPIClient;
 
 import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -25,18 +37,20 @@ import java.util.Random;
 public class ProfileFragment extends Fragment {
 
     private ImageView ivHeader;
-    private EditText etUsernameProf;
+    private TextView etUsernameProf;
     private EditText etEmail;
     private EditText etFullName;
-    private EditText etBithDate;
+    private EditText etBirthDate;
     private TextView tvCompProf;
     private ImageButton imgBtEdit;
     private ImageButton imgBtPhoto;
+    private User user;
+    private ProgressBar simpleProgressBar;
+    private int progress=0;
 
     public ProfileFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,22 +58,28 @@ public class ProfileFragment extends Fragment {
         View root= inflater.inflate(R.layout.fragment_profile, container, false);
 
         ivHeader = (ImageView)root.findViewById(R.id.ivHeader);
-        etUsernameProf = (EditText)root.findViewById(R.id.etUsernameProf);
+        etUsernameProf = (TextView) root.findViewById(R.id.etUsernameProf);
         etEmail = (EditText)root.findViewById(R.id.etEmail);
         etFullName = (EditText)root.findViewById(R.id.etFullName);
-        etBithDate = (EditText)root.findViewById(R.id.etBithDate);
         tvCompProf = (TextView) root.findViewById(R.id.tvCompProf);
         imgBtEdit = (ImageButton)root.findViewById(R.id.imgBtEdit);
         imgBtPhoto = (ImageButton)root.findViewById(R.id.imgBtPhoto);
+        simpleProgressBar = (ProgressBar)root.findViewById(R.id.progressBar);
 
         etUsernameProf.setEnabled(false);
         etEmail.setEnabled(false);
         etFullName.setEnabled(false);
-        etBithDate.setEnabled(false);
         imgBtPhoto.setEnabled(false);
 
         imgBtPhoto.setVisibility(View.GONE);
+        simpleProgressBar.setVisibility(View.GONE);
 
+        user=MenuActivity.getUser();
+
+        etUsernameProf.setText(user.getLogin());
+        etEmail.setText(user.getEmail());
+        etFullName.setText(user.getFullname());
+        tvCompProf.setText(user.getCompany().getName());
 
         imgBtEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,51 +87,47 @@ public class ProfileFragment extends Fragment {
                 imgBtEdit.setImageResource(R.drawable.ic_save_black_24dp);
 
                 imgBtPhoto.setEnabled(true);
-                imgBtPhoto.setVisibility(View.VISIBLE);
+                imgBtPhoto.setVisibility(View.INVISIBLE);
 
                 etUsernameProf.setEnabled(true);
                 etEmail.setEnabled(true);
                 etFullName.setEnabled(true);
-                etBithDate.setEnabled(true);
 
-                imgBtEdit.setOnClickListener(new View.OnClickListener() {
+                imgBtEdit.setOnClickListener(new View.OnClickListener(){
                     @Override
-                    public void onClick(View v) {
-                        imgBtEdit.setImageResource(R.drawable.ic_update_black_24dp);
-                        saveData();
+                    public void onClick(View view){
+                        user.setLogin(etUsernameProf.getText().toString());
+
+                        UserInterface userInterface = UserAPIClient.getClient();
+
+
+                        Call<Void>call=userInterface.edit(user);
+                        call.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                if(response.code()==204){
+                                    Log.d("mensaje","todo ok");
+
+                                    simpleProgressBar.setProgress(View.VISIBLE);
+
+                                    Toast.makeText(getContext(), "Usuario modificado correctamente", Toast.LENGTH_LONG).show();
+
+                                    simpleProgressBar.setVisibility(View.INVISIBLE);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+
+                            }
+                        });
                     }
+
                 });
             }
         });
-        //randomHeaderGenerator();
 
         return root;
     }
-
-    private void saveData() {
-    }
-
-    /*private void randomHeaderGenerator() {
-        Random aleatorio = new Random(System.currentTimeMillis());
-        int intAletorio = aleatorio.nextInt(5);
-        switch (intAletorio){
-            case 0:
-                ivHeader.setImageResource(R.drawable.header1);
-                break;
-            case 1:
-                ivHeader.setImageResource(R.drawable.header2);
-                break;
-            case 2:
-                ivHeader.setImageResource(R.drawable.header3);
-                break;
-            case 3:
-                ivHeader.setImageResource(R.drawable.header4);
-                break;
-            case 4:
-                ivHeader.setImageResource(R.drawable.header5);
-                break;
-        }
-
-    }*/
 
 }

@@ -48,7 +48,7 @@ public interface UserInterface {
      *
      */
     @PUT("{email}")
-    public void recoverPassword(@Body User user);
+    public Call <Void> recoverPassword(@Body User user);
     
     /**
      * 
@@ -61,11 +61,11 @@ public interface UserInterface {
      * 
      * @param user 
      */
-    @PUT
-    public void edit(@Body User user);
+    @PUT("{user}")
+    public Call <Void> edit(@Body User user);
 
     @DELETE("{id}")
-    public void remove(@Path("id")Integer id);
+    public Call <Void> remove(@Path("id")Integer id);
     
      
     

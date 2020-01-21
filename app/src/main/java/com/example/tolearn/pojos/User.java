@@ -5,6 +5,8 @@
  */
 package com.example.tolearn.pojos;
 
+import android.text.Editable;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Collection;

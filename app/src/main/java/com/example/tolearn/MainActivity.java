@@ -98,8 +98,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         Log.d("TRap",response.code()+" Adrian chico guapo");
-                        if (response.code() == 200) {
+                        if (response.code() == 200){
                             Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+                            intent.putExtra("user",response.body());
                             startActivity(intent);
                         }
 
