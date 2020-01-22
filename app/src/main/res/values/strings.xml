@@ -11,6 +11,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Fragments -->
+    <!-- PDf -->
+    <string name="search">Search </string>
     <!-- Profile -->
     <string name="btnNewImage">change profile picture</string>
     <string name="tvUsernameProfile">Username: </string>
@@ -29,8 +31,8 @@
     <string name="visible">Visible</string>
     <string name="area">Select area</string>
 
-    <!-- New Doc -->
-    <string name="search">Search</string>
+    <!-- departmenr admin -->
+    <string name="DepTitle">Department administration</string>
 
 
 </resources>
