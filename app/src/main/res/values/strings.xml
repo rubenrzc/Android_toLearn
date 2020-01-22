@@ -33,6 +33,7 @@
 
     <!-- departmenr admin -->
     <string name="DepTitle">Department administration</string>
+    <string name="departEx">Example text</string>
 
 
 </resources>

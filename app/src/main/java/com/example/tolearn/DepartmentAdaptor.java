@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class DepartmentAdaptor extends RecyclerView.Adapter<DepartmentAdaptor.ViewHolderDatos> {
+public class DepartmentAdaptor
+        extends RecyclerView.Adapter<DepartmentAdaptor.ViewHolderDatos>
+        implements  View.OnClickListener{
 
     ArrayList<String>listDepart;
+    private View.OnClickListener listener;
 
     public DepartmentAdaptor(ArrayList<String> listDepart) {
         this.listDepart = listDepart;
@@ -24,6 +27,9 @@ public class DepartmentAdaptor extends RecyclerView.Adapter<DepartmentAdaptor.Vi
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.department_item_list
                         , parent,false);
+
+        view.setOnClickListener(this);
+
         return new ViewHolderDatos(view);
     }
 
@@ -35,6 +41,16 @@ public class DepartmentAdaptor extends RecyclerView.Adapter<DepartmentAdaptor.Vi
     @Override
     public int getItemCount() {
         return listDepart.size();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+    @Override
+    public void onClick(View v) {
+        if(listener!=null){
+            listener.onClick(v);
+        }
     }
 
     public class ViewHolderDatos extends RecyclerView.ViewHolder {

@@ -39,10 +39,19 @@
         android:id="@+id/nav_departmentAdmin"
         android:name="com.example.tolearn.fragments.DepartmentAdminFragment"
         android:label="Department administration"
-        tools:layout="@layout/fragment_department_admin"/>
+        tools:layout="@layout/fragment_department_admin">
+        <action
+            android:id="@+id/action_nav_departmentAdmin_to_nav_departProfile"
+            app:destination="@id/nav_departProfile" />
+    </fragment>
     <fragment
         android:id="@+id/nav_areaAdmin"
         android:name="com.example.tolearn.fragments.AreaAdminFragment"
         android:label="Area administration"
         tools:layout="@layout/fragment_area_admin"/>
+    <fragment
+        android:id="@+id/nav_departProfile"
+        android:name="com.example.tolearn.fragments.DepartProfile"
+        android:label="Department profile"
+        tools:layout="@layout/fragment_depart_profile"/>
 </navigation>
