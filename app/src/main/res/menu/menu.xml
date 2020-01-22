@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:id="@+id/nav_profile" android:title="Profile" android:icon="@drawable/ic_person_black_24dp"/>
-    <item android:id="@+id/nav_newArea" android:title="New area" android:icon="@drawable/ic_add_circle_outline_black_24dp"/>
-    <item android:id="@+id/nav_pdf" android:title="Documents" android:icon="@drawable/ic_picture_as_pdf_black_24dp"/>
-    <item android:id="@+id/nav_newDoc" android:title="New document" android:icon="@drawable/ic_create_new_folder_black_24dp"/>
-    <item android:id="@+id/nav_exit" android:title="Exit" android:icon="@drawable/ic_exit_to_app_black_24dp"/>
-
+    <item android:title="User">
+        <menu>
+            <item android:id="@+id/nav_profile" android:title="Profile" android:icon="@drawable/ic_person_black_24dp"/>
+            <item android:id="@+id/nav_checkUsers" android:title="Check new users " android:icon="@drawable/ic_verified_user_black_24dp"/>
+        </menu>
+    </item>
+    <item android:title="Company">
+        <menu>
+            <item android:id="@+id/nav_companyAdmin" android:title="Administrate companies" android:icon="@drawable/ic_account_balance_black_24dp"/>
+        </menu>
+    </item>
+    <item android:title="Departament">
+        <menu>
+            <item android:id="@+id/nav_departmentAdmin" android:title="Administrate departments" android:icon="@drawable/ic_business_black_24dp"/>
+        </menu>
+    </item>
+    <item android:title="Area">
+        <menu>
+            <item android:id="@+id/nav_areaAdmin" android:title="Administrate areas" android:icon="@drawable/ic_library_books_black_24dp"/>
+        </menu>
+    </item>
+    <item android:title="Document">
+        <menu>
+            <item android:id="@+id/nav_pdf" android:title="Documents" android:icon="@drawable/ic_picture_as_pdf_black_24dp"/>
+            <item android:id="@+id/nav_newDoc" android:title="New document" android:icon="@drawable/ic_create_new_folder_black_24dp"/>
+        </menu>
+    </item>
+    <item android:id="@+id/nav_exit" android:title="Close session" android:icon="@drawable/ic_exit_to_app_black_24dp"/>
 </menu>

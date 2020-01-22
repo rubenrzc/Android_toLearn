@@ -51,8 +51,11 @@ public class MenuActivity extends AppCompatActivity {
         user = (User) bundle.get("user");
         Log.d("usuario",user.getLogin());
 
+
         appBarConfiguration= new AppBarConfiguration.Builder(R.id.nav_profile,
-                R.id.nav_newArea,R.id.nav_pdf,
+                R.id.nav_checkUsers,R.id.nav_companyAdmin,
+                R.id.nav_departmentAdmin,R.id.nav_areaAdmin,
+                R.id.nav_pdf,
                 R.id.nav_newDoc,R.id.nav_exit)
                 .setDrawerLayout(drawerLayout).build();
 

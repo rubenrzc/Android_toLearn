@@ -14,10 +14,10 @@ import com.example.tolearn.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewAreaFragment extends Fragment {
+public class CheckUsersFragment extends Fragment {
 
 
-    public NewAreaFragment() {
+    public CheckUsersFragment() {
         // Required empty public constructor
     }
 
@@ -26,7 +26,7 @@ public class NewAreaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_area, container, false);
+        return inflater.inflate(R.layout.fragment_check_users, container, false);
     }
 
 }

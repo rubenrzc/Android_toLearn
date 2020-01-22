@@ -45,7 +45,6 @@ public class ProfileFragment extends Fragment {
     private ImageButton imgBtEdit;
     private ImageButton imgBtPhoto;
     private User user;
-    private ProgressBar simpleProgressBar;
     private int progress=0;
 
     public ProfileFragment() {
@@ -64,7 +63,6 @@ public class ProfileFragment extends Fragment {
         tvCompProf = (TextView) root.findViewById(R.id.tvCompProf);
         imgBtEdit = (ImageButton)root.findViewById(R.id.imgBtEdit);
         imgBtPhoto = (ImageButton)root.findViewById(R.id.imgBtPhoto);
-        simpleProgressBar = (ProgressBar)root.findViewById(R.id.progressBar);
 
         etUsernameProf.setEnabled(false);
         etEmail.setEnabled(false);
@@ -72,7 +70,6 @@ public class ProfileFragment extends Fragment {
         imgBtPhoto.setEnabled(false);
 
         imgBtPhoto.setVisibility(View.GONE);
-        simpleProgressBar.setVisibility(View.GONE);
 
         user=MenuActivity.getUser();
 
@@ -81,13 +78,13 @@ public class ProfileFragment extends Fragment {
         etFullName.setText(user.getFullname());
         tvCompProf.setText(user.getCompany().getName());
 
+
         imgBtEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 imgBtEdit.setImageResource(R.drawable.ic_save_black_24dp);
 
                 imgBtPhoto.setEnabled(true);
-                imgBtPhoto.setVisibility(View.INVISIBLE);
 
                 etUsernameProf.setEnabled(true);
                 etEmail.setEnabled(true);
@@ -100,19 +97,19 @@ public class ProfileFragment extends Fragment {
 
                         UserInterface userInterface = UserAPIClient.getClient();
 
-
                         Call<Void>call=userInterface.edit(user);
                         call.enqueue(new Callback<Void>() {
+                            ProgressBar simpleProgressBar = (ProgressBar)root.findViewById(R.id.progressBar);
+
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if(response.code()==204){
                                     Log.d("mensaje","todo ok");
 
-                                    simpleProgressBar.setProgress(View.VISIBLE);
+                                    simpleProgressBar.setVisibility(View.VISIBLE);
+                                    simpleProgressBar.setProgress(1);
 
                                     Toast.makeText(getContext(), "Usuario modificado correctamente", Toast.LENGTH_LONG).show();
-
-                                    simpleProgressBar.setVisibility(View.INVISIBLE);
                                 }
                             }
 

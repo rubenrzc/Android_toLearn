@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="250dp"
     android:padding="10dp"
     android:background="#fff">
 
@@ -13,18 +13,9 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp"
-        android:src="@drawable/user"
+        android:src="@drawable/logo"
         app:civ_border_color="#ff000000"
         app:civ_border_width="2dp" />
 
-    <TextView
-        android:id="@+id/tvUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="@string/username"
-        android:textSize="21sp"
-        android:textStyle="bold" />
 
 </LinearLayout>
