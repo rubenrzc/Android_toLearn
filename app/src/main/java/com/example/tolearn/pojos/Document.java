@@ -5,14 +5,18 @@
  */
 package com.example.tolearn.pojos;
 
+import org.simpleframework.xml.Root;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
+
 /**
  *
  * @author Ruben
  */
-
+@Root(name="Document")
 public class Document implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,7 +29,7 @@ public class Document implements Serializable {
 
     private User user;
 
-    private Collection<Area> areas;
+    private Set<Area> areas;
 
     private Date uploadDate;
 
@@ -63,11 +67,11 @@ public class Document implements Serializable {
     }
 
 
-    public Collection<Area> getAreas() {
+    public Set<Area> getAreas() {
         return areas;
     }
 
-    public void setAreas(Collection<Area> areas) {
+    public void setAreas(Set<Area> areas) {
         this.areas = areas;
     }
 

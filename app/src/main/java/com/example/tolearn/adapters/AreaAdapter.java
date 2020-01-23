@@ -1,4 +1,4 @@
-package com.example.tolearn;
+package com.example.tolearn.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,41 +8,44 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.example.tolearn.R;
+
 import java.util.ArrayList;
 
-public class DepartmentAdaptor
-        extends RecyclerView.Adapter<DepartmentAdaptor.ViewHolderDatos>
-        implements  View.OnClickListener{
+public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolderDatos>
+                            implements View.OnClickListener{
 
-    ArrayList<String>listDepart;
+    ArrayList<String>listAreas;
+
+
     private View.OnClickListener listener;
 
-    public DepartmentAdaptor(ArrayList<String> listDepart) {
-        this.listDepart = listDepart;
+    public AreaAdapter(ArrayList<String> listAreas) {
+        this.listAreas = listAreas;
     }
 
     @NonNull
     @Override
-    public ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AreaAdapter.ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.department_item_list
+                .inflate(R.layout.item_list_area
                         , parent,false);
 
         view.setOnClickListener(this);
-
-        return new ViewHolderDatos(view);
+        return new AreaAdapter.ViewHolderDatos(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderDatos holder, int position) {
-        holder.asignarDatosDepart(listDepart.get(position));
+    public void onBindViewHolder(@NonNull AreaAdapter.ViewHolderDatos holder, int position) {
+        holder.asignarDatos(listAreas.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listDepart.size();
+        return listAreas.size();
     }
-
     public void setOnClickListener(View.OnClickListener listener){
         this.listener = listener;
     }
@@ -54,15 +57,14 @@ public class DepartmentAdaptor
     }
 
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
-        TextView idDepartName;
-
+        TextView idAreaName;
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
-            idDepartName = (TextView) itemView.findViewById(R.id.idDepartName);
+            idAreaName = (TextView)itemView.findViewById(R.id.idAreaName);
         }
 
-        public void asignarDatosDepart(String datos) {
-            idDepartName.setText(datos);
+        public void asignarDatos(String datos) {
+            idAreaName.setText(datos);
         }
     }
 }

@@ -14,11 +14,10 @@ import com.example.tolearn.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PdfFragment extends Fragment {
+public class AreaProfile extends Fragment {
 
 
-
-    public PdfFragment() {
+    public AreaProfile() {
         // Required empty public constructor
     }
 
@@ -26,10 +25,8 @@ public class PdfFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_pdf, container, false);
-
         // Inflate the layout for this fragment
-        return root;
+        return inflater.inflate(R.layout.fragment_area_profile, container, false);
     }
 
 }

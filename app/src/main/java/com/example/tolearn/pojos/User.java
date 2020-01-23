@@ -7,16 +7,20 @@ package com.example.tolearn.pojos;
 
 import android.text.Editable;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 /**
  *
  * @author Francisco Romero Alonso
  */
-
+@Root(name="User")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,7 +46,7 @@ public class User implements Serializable {
 
     private Company company;
 
-    private Collection<Document> documents;
+    private Set<Document> documents;
 
     /**
      *
@@ -122,14 +126,14 @@ public class User implements Serializable {
      * @return
      */
 
-    public Collection<Document> getDocuments() {
+    public Set<Document> getDocuments() {
         return documents;
     }
 
     /**
      * @param documents
      */
-    public void setDocuments(Collection<Document> documents) {
+    public void setDocuments(Set<Document> documents) {
         this.documents = documents;
     }
 

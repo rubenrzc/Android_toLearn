@@ -58,7 +58,18 @@ public class MainActivity extends AppCompatActivity {
 
 
         menuLauncher();
+        recoverPassword();
 
+    }
+
+    private void recoverPassword() {
+        btnRecover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RecoverPassword.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private boolean isInternet() {
@@ -102,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
                             intent.putExtra("user",response.body());
                             startActivity(intent);
+                        }
+                        if (response.code() == 500){
+                            etPwd.setError("User not found");
                         }
 
                     }

@@ -5,15 +5,18 @@
  */
 package com.example.tolearn.pojos;
 
+import org.simpleframework.xml.Root;
+
 import java.io.Serializable;
 import java.util.Collection;
-
+import java.util.Set;
 
 
 /**
  *
  * @author Andoni
  */
+@Root(name="Area")
 public class Area implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,9 +25,9 @@ public class Area implements Serializable {
     
     private String name;
 
-    private Collection<Department> departments;
+    private Set<Department> departments;
 
-    private Collection<Document> documents;
+    private Set<Document> documents;
 
     public int getId() {
         return id;
@@ -50,26 +53,26 @@ public class Area implements Serializable {
      * @return the departments
      */
     
-    public Collection<Department> getDepartments() {
+    public Set<Department> getDepartments() {
         return departments;
     }
     /**
      * @param departments the departments to set
      */
-    public void setDepartments(Collection<Department> departments) {
+    public void setDepartments(Set<Department> departments) {
         this.departments = departments;
     }
     /**
      * @return the documents
      */
     
-    public Collection<Document> getDocuments() {
+    public Set<Document> getDocuments() {
         return documents;
     }
     /**
      * @param documents the documents to set
      */
-    public void setDocuments(Collection<Document> documents) {
+    public void setDocuments(Set<Document> documents) {
         this.documents = documents;
     }
 

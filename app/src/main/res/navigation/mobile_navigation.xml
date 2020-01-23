@@ -48,10 +48,19 @@
         android:id="@+id/nav_areaAdmin"
         android:name="com.example.tolearn.fragments.AreaAdminFragment"
         android:label="Area administration"
-        tools:layout="@layout/fragment_area_admin"/>
+        tools:layout="@layout/fragment_area_admin">
+        <action
+            android:id="@+id/action_nav_areaAdmin_to_nav_areaProfile"
+            app:destination="@id/nav_areaProfile" />
+    </fragment>
     <fragment
         android:id="@+id/nav_departProfile"
         android:name="com.example.tolearn.fragments.DepartProfile"
         android:label="Department profile"
         tools:layout="@layout/fragment_depart_profile"/>
+    <fragment
+        android:id="@+id/nav_areaProfile"
+        android:name="com.example.tolearn.fragments.AreaProfile"
+        android:label="Area profile"
+        tools:layout="@layout/fragment_area_profile"/>
 </navigation>

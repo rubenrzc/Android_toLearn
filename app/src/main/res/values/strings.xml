@@ -10,6 +10,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- departmenr admin -->
+    <string name="btnRecover">Recover password</string>
+    <string name="etEmail">Email</string>
+    <string name="tvRecover">Insert ypur email to recover password</string>
+    <string name="bntCancel">Cancel</string>
+
     <!-- Fragments -->
     <!-- PDf -->
     <string name="search">Search </string>
