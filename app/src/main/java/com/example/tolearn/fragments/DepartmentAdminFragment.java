@@ -14,8 +14,17 @@ import android.view.ViewGroup;
 
 import com.example.tolearn.adapters.DepartmentAdapter;
 import com.example.tolearn.R;
+import com.example.tolearn.interfaces.DepartmentInterface;
+import com.example.tolearn.pojos.Department;
+import com.example.tolearn.pojos.plural.Departments;
+import com.example.tolearn.retrofit.DepartmentAPIClient;
 
 import java.util.ArrayList;
+import java.util.Set;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,9 +48,7 @@ public class DepartmentAdminFragment extends Fragment {
 
         listDepart = new ArrayList<String>();
 
-        for (int i = 0; i < 50; i++) {
-            listDepart.add("Depart " + i + " ");
-        }
+        listDepart = llenarDepartmentRecycler();
 
 
         layoutManager = new LinearLayoutManager(getContext());
@@ -59,6 +66,31 @@ public class DepartmentAdminFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private ArrayList<String> llenarDepartmentRecycler() {
+        ArrayList<String>departments;
+
+        departments = new ArrayList<String>();
+
+        DepartmentInterface departmentInterface = DepartmentAPIClient.getClient();
+        Call<Departments>call = departmentInterface.FindAllDepartment();
+        call.enqueue(new Callback<Departments>() {
+            @Override
+            public void onResponse(Call<Departments> call, Response<Departments> response) {
+                if(response.code()==200){
+                    Departments dep = response.body();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Departments> call, Throwable t) {
+
+            }
+        });
+
+        return departments;
     }
 
 }

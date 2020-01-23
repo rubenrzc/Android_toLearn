@@ -7,6 +7,7 @@ package com.example.tolearn.interfaces;
 
 
 import com.example.tolearn.pojos.Department;
+import com.example.tolearn.pojos.plural.Departments;
 
 import java.util.Collection;
 
@@ -34,5 +35,5 @@ public interface DepartmentInterface {
     public void remove(@Path("id") Integer id);
 
     @GET
-    public Call<Collection<Department>> FindAllDepartment();
+    public Call<Departments> FindAllDepartment();
 }

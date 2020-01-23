@@ -15,7 +15,7 @@ import java.util.Set;
  *
  * @author Ruben
  */
-@Root(name="Company")
+
 public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;

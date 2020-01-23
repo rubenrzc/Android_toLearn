@@ -20,7 +20,6 @@ import java.util.Set;
  *
  * @author Francisco Romero Alonso
  */
-@Root(name="User")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;

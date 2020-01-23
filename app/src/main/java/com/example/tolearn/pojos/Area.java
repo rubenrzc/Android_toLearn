@@ -16,7 +16,7 @@ import java.util.Set;
  *
  * @author Andoni
  */
-@Root(name="Area")
+
 public class Area implements Serializable {
 
     private static final long serialVersionUID = 1L;

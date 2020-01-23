@@ -3,6 +3,7 @@ package com.example.tolearn.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ import com.example.tolearn.interfaces.UserInterface;
 import com.example.tolearn.pojos.User;
 import com.example.tolearn.retrofit.UserAPIClient;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -84,6 +86,9 @@ public class ProfileFragment extends Fragment {
         etFullName.setText(user.getFullname());
         tvCompProf.setText(user.getCompany().getName());
 
+        Bitmap bitmap = BitmapFactory.decodeByteArray(user.getPhoto() , 0, user.getPhoto() .length);
+
+        CircleImageUser.setImageBitmap(bitmap);
 
         imgBtEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +152,13 @@ public class ProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap bitmap = (Bitmap)data.getExtras().get("data");
         CircleImageUser.setImageBitmap(bitmap);
+
+       /* Bitmap bmp = intent.getExtras().get("data");
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        bmp.recycle();*/
+
     }
 
 }
