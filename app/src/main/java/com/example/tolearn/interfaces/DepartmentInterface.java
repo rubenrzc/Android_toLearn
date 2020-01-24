@@ -34,6 +34,6 @@ public interface DepartmentInterface {
     @DELETE("{id}")
     public void remove(@Path("id") Integer id);
 
-    @GET
+    @GET("department/")
     public Call<Departments> FindAllDepartment();
 }

@@ -5,6 +5,8 @@
  */
 package com.example.tolearn.pojos;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
@@ -15,26 +17,28 @@ import java.util.Set;
  *
  * @author Yeray
  */
-
+//@Root(name="department")
 public class Department implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    //@Element(name="id")
     private int id;
     /**
      * Department name
      */
-
+    //@Element(name="name")
     private String name;
 
     /**
      * Companies collection
      */
-
+    //@ElementList(name = "companies", inline = true)
     private Set<Company> companies;
 
     /**
      * Areas collection
      */
+    //@ElementList(name = "areas", inline = true)
     private Set<Area> areas;
 
     public int getId() {
@@ -74,7 +78,7 @@ public class Department implements Serializable {
         this.companies = companies;
     }
 
-    /**
+    /**0
      * @return the areas
      */
 

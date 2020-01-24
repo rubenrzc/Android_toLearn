@@ -5,6 +5,8 @@
  */
 package com.example.tolearn.pojos;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
@@ -15,18 +17,19 @@ import java.util.Set;
  *
  * @author Ruben
  */
-
+//@Root(name="company")
 public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //@Element(name="id")
     private int id;
-   
+    //@Element(name="name")
     private String name;
+    //@Element(name="cif")
     private String cif;
-
+    //@ElementList(name = "users", inline = true)
     private Set<User> users;
-
+    //@ElementList(name = "departments", inline = true)
     private Set<Department> departments;
 
     public int getId() {

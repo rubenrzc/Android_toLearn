@@ -86,9 +86,9 @@ public class ProfileFragment extends Fragment {
         etFullName.setText(user.getFullname());
         tvCompProf.setText(user.getCompany().getName());
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(user.getPhoto() , 0, user.getPhoto() .length);
+        //Bitmap bitmap = BitmapFactory.decodeByteArray(user.getPhoto() , 0, user.getPhoto() .length);
 
-        CircleImageUser.setImageBitmap(bitmap);
+        //CircleImageUser.setImageBitmap(bitmap);
 
         imgBtEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +153,7 @@ public class ProfileFragment extends Fragment {
         Bitmap bitmap = (Bitmap)data.getExtras().get("data");
         CircleImageUser.setImageBitmap(bitmap);
 
-       /* Bitmap bmp = intent.getExtras().get("data");
+        /*Bitmap bmp = intent.getExtras().get("data");
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] byteArray = stream.toByteArray();

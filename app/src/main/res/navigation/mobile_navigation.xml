@@ -29,7 +29,11 @@
         android:id="@+id/nav_checkUsers"
         android:name="com.example.tolearn.fragments.CheckUsersFragment"
         android:label="Check new users"
-        tools:layout="@layout/fragment_check_users"/>
+        tools:layout="@layout/fragment_check_users">
+        <action
+            android:id="@+id/action_nav_checkUsers_to_nav_userProfile"
+            app:destination="@id/nav_userProfile" />
+    </fragment>
     <fragment
         android:id="@+id/nav_companyAdmin"
         android:name="com.example.tolearn.fragments.CompanyAdminFragment"
@@ -55,12 +59,17 @@
     </fragment>
     <fragment
         android:id="@+id/nav_departProfile"
-        android:name="com.example.tolearn.fragments.DepartProfile"
+        android:name="com.example.tolearn.fragments.profiles.DepartProfile"
         android:label="Department profile"
         tools:layout="@layout/fragment_depart_profile"/>
     <fragment
         android:id="@+id/nav_areaProfile"
-        android:name="com.example.tolearn.fragments.AreaProfile"
+        android:name="com.example.tolearn.fragments.profiles.AreaProfile"
         android:label="Area profile"
         tools:layout="@layout/fragment_area_profile"/>
+    <fragment
+        android:id="@+id/nav_userProfile"
+        android:name="com.example.tolearn.fragments.profiles.UserProfile"
+        android:label="User profile"
+        tools:layout="@layout/fragment_user_profile"/>
 </navigation>

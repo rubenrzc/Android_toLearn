@@ -8,6 +8,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.example.tolearn.retrofit.DepartmentAPIClient;
 import java.util.ArrayList;
 import java.util.Set;
 
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,7 +33,8 @@ import retrofit2.Response;
  */
 public class DepartmentAdminFragment extends Fragment {
 
-    private ArrayList<String> listDepart;
+    private Set<Departments> listDepartSet;
+    private ArrayList<String>listDepart;
     private RecyclerView recycler;
     private DepartmentAdapter departmentAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -46,10 +49,20 @@ public class DepartmentAdminFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_department_admin, container, false);
 
+        /*listDepartSet = llenarDepartmentRecycler();
+        String name;
+
+        for(int i = 0 ; i<listDepartSet.size();i++){
+            name = listDepartSet.toString();
+            listDepart.add(name);
+        }*/
+
+
+        //Array<Department> aux = listDepartSet.toArray(new Department[listDepartSet.size()]);
         listDepart = new ArrayList<String>();
-
-        listDepart = llenarDepartmentRecycler();
-
+        for (int i=0;i<20;i++){
+            listDepart.add("Depart "+i+" ");
+        }
 
         layoutManager = new LinearLayoutManager(getContext());
         recycler = (RecyclerView) root.findViewById(R.id.recyclerDepart);
@@ -68,18 +81,18 @@ public class DepartmentAdminFragment extends Fragment {
         return root;
     }
 
-    private ArrayList<String> llenarDepartmentRecycler() {
-        ArrayList<String>departments;
+    private Set<Departments> llenarDepartmentRecycler() {
 
-        departments = new ArrayList<String>();
-
+        Set<Departments> departments = null;
         DepartmentInterface departmentInterface = DepartmentAPIClient.getClient();
         Call<Departments>call = departmentInterface.FindAllDepartment();
         call.enqueue(new Callback<Departments>() {
             @Override
             public void onResponse(Call<Departments> call, Response<Departments> response) {
-                if(response.code()==200){
-                    Departments dep = response.body();
+                if(response.isSuccessful()){
+                    Departments listDepart = response.body();
+                    departments.add(listDepart);
+                    Log.d("mensaje","todo bien");
                 }
 
             }

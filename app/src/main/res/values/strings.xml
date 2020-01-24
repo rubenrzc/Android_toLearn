@@ -42,5 +42,21 @@
     <string name="DepTitle">Department administration</string>
     <string name="departEx">Example text</string>
 
+    <!-- departmenr profile -->
+    <string name="etNameDep">Department name</string>
+    <string name="btnUploadDep">Upload department</string>
+    <string name="btnSave">Save</string>
+    <string name="warning">Warning</string>
+    <string name="areYouSure">Are you sure you want to discard de operation?</string>
+    <string name="yes">Yes, i want to discard</string>
+    <string name="no">No</string>
+    <string name="delete">Are you sure you want to delete it?</string>
+    <string name="deleted">Department have been deleted</string>
+
+    <!-- area profile -->
+    <string name="etNameArea">Area name</string>
+    <string name="btnUploadArea">Upload area</string>
+    <string name="deletedArea">Area have been deleted</string>
+
 
 </resources>

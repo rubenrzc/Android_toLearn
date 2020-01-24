@@ -8,6 +8,7 @@ package com.example.tolearn.pojos;
 import android.text.Editable;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
@@ -20,31 +21,35 @@ import java.util.Set;
  *
  * @author Francisco Romero Alonso
  */
+//@Root(name="user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    //@Element(name="id")
     private int id;
+    //@Element(name="login")
     private String login;
+    //@Element(name="email")
     private String email;
-
+    //@Element(name="fullName")
     private String fullname;
-
+   // @Element(name="status")
     private UserStatus status;
-
+    //@Element(name="privilege")
     private UserPrivilege privilege;
-
+    //@Element(name="password")
     private String password;
-
+    //@ElementList(name = "photo", inline = true)
     private byte[] photo;
-
+    //@Element(name="lastAcces")
     private String lastAccess;
-
+    //@Element(name="lastPasswordChange")
     private String lastPassWordChange;
-
+    //@Element(name="bDate")
     private String bDate;
-
+    //@Element(name="company")
     private Company company;
-
+    //@ElementList(name = "documents", inline = true)
     private Set<Document> documents;
 
     /**
