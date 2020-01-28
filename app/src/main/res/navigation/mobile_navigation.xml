@@ -26,29 +26,6 @@
         android:label="Close session"
         tools:layout="@layout/fragment_exit"/>
     <fragment
-        android:id="@+id/nav_checkUsers"
-        android:name="com.example.tolearn.fragments.CheckUsersFragment"
-        android:label="Check new users"
-        tools:layout="@layout/fragment_check_users">
-        <action
-            android:id="@+id/action_nav_checkUsers_to_nav_userProfile"
-            app:destination="@id/nav_userProfile" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_companyAdmin"
-        android:name="com.example.tolearn.fragments.CompanyAdminFragment"
-        android:label="Companies administration"
-        tools:layout="@layout/fragment_company_admin"/>
-    <fragment
-        android:id="@+id/nav_departmentAdmin"
-        android:name="com.example.tolearn.fragments.DepartmentAdminFragment"
-        android:label="Department administration"
-        tools:layout="@layout/fragment_department_admin">
-        <action
-            android:id="@+id/action_nav_departmentAdmin_to_nav_departProfile"
-            app:destination="@id/nav_departProfile" />
-    </fragment>
-    <fragment
         android:id="@+id/nav_areaAdmin"
         android:name="com.example.tolearn.fragments.AreaAdminFragment"
         android:label="Area administration"
@@ -58,18 +35,8 @@
             app:destination="@id/nav_areaProfile" />
     </fragment>
     <fragment
-        android:id="@+id/nav_departProfile"
-        android:name="com.example.tolearn.fragments.profiles.DepartProfile"
-        android:label="Department profile"
-        tools:layout="@layout/fragment_depart_profile"/>
-    <fragment
         android:id="@+id/nav_areaProfile"
-        android:name="com.example.tolearn.fragments.profiles.AreaProfile"
+        android:name="com.example.tolearn.fragments.AreaProfile"
         android:label="Area profile"
         tools:layout="@layout/fragment_area_profile"/>
-    <fragment
-        android:id="@+id/nav_userProfile"
-        android:name="com.example.tolearn.fragments.profiles.UserProfile"
-        android:label="User profile"
-        tools:layout="@layout/fragment_user_profile"/>
 </navigation>

@@ -1,4 +1,7 @@
 <resources>
+    <!-- Main -->
+
+    <string name="switchRemember">Remember me</string>
     <string name="app_name">2dam2curious.toLearn</string>
     <string name="tittle">.ToLearn();</string>
     <string name="username">Username</string>
@@ -40,7 +43,11 @@
 
     <!-- departmenr admin -->
     <string name="DepTitle">Department administration</string>
-    <string name="departEx">Example text</string>
+    <string name="btnAddDepart">New department</string>
+    <string name="addDep">Introduce department name</string>
+    <string name="add">Add</string>
+    <string name="departEx">example</string>
+
 
     <!-- departmenr profile -->
     <string name="etNameDep">Department name</string>
@@ -53,10 +60,21 @@
     <string name="delete">Are you sure you want to delete it?</string>
     <string name="deleted">Department have been deleted</string>
 
+    <!-- area administrate -->
+    <string name="btnAddArea">New area</string>
+    <string name="addArea">Introduce area name</string>
+
+
     <!-- area profile -->
     <string name="etNameArea">Area name</string>
     <string name="btnUploadArea">Upload area</string>
     <string name="deletedArea">Area have been deleted</string>
+
+    <!-- check users -->
+    <string name="btnAddUser">New user</string>
+    <string name="btnAceptAll">Verify all</string>
+
+
 
 
 </resources>

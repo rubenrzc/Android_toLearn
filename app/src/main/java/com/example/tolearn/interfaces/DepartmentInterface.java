@@ -6,6 +6,8 @@
 package com.example.tolearn.interfaces;
 
 
+import androidx.annotation.Keep;
+
 import com.example.tolearn.pojos.Department;
 import com.example.tolearn.pojos.plural.Departments;
 
@@ -25,7 +27,7 @@ import retrofit2.http.Path;
  */
 public interface DepartmentInterface {
 
-    @POST
+    @POST(".")
     public  Call <Void> create(@Body Department entity);
 
     @PUT("{id}")

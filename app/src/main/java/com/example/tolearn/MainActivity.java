@@ -3,27 +3,36 @@ package com.example.tolearn;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tolearn.interfaces.UserInterface;
 import com.example.tolearn.pojos.User;
 import com.example.tolearn.retrofit.UserAPIClient;
+import com.example.tolearn.sqlite.ConexionSQLiteHelper;
+import com.example.tolearn.sqlite.LocalUser;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvPwd;
     private TextView tvTittle;
     private boolean network;
+    private Switch switchRemember;
+    private ConexionSQLiteHelper conn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +57,20 @@ public class MainActivity extends AppCompatActivity {
         etPwd = (EditText) findViewById(R.id.etPwd);
         tvPwd = (TextView) findViewById(R.id.tvPwd);
         tvTittle = (TextView) findViewById(R.id.tvTittle);
-
+        switchRemember = (Switch) findViewById(R.id.switchRemember);
         network = isInternet();
+
+        Animation animation= AnimationUtils.loadAnimation(MainActivity.this, R.anim.right_in);
+        btnLogIn.startAnimation(animation);
+        btnRecover.startAnimation(animation);
+        etUsername.startAnimation(animation);
+        etPwd.startAnimation(animation);
+        tvPwd.startAnimation(animation);
+        tvTittle.startAnimation(animation);
+        switchRemember.startAnimation(animation);
+
+
+
 
         if(network == false){
             Toast.makeText(getApplicationContext(),"NOT INTERNETEN CONECTION",Toast.LENGTH_SHORT).show();
@@ -56,10 +79,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
+        consultarUltimoUser();
         menuLauncher();
         recoverPassword();
-
     }
 
     private void recoverPassword() {
@@ -110,12 +132,23 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<User> call, Response<User> response) {
                         Log.d("TRap",response.code()+" Adrian chico guapo");
                         if (response.code() == 200){
+                            registrarUserEnSQLite();
+                            Animation animation= AnimationUtils.loadAnimation(MainActivity.this, R.anim.right_out);
+                            btnLogIn.startAnimation(animation);
+                            btnRecover.startAnimation(animation);
+                            etUsername.startAnimation(animation);
+                            etPwd.startAnimation(animation);
+                            tvPwd.startAnimation(animation);
+                            tvTittle.startAnimation(animation);
+                            switchRemember.startAnimation(animation);
+                            sonidoEncendido();
                             Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
                             intent.putExtra("user",response.body());
                             startActivity(intent);
                         }
-                        if (response.code() == 500){
+                        if (response.code() == 401){
                             etPwd.setError("User not found");
+                            sonidoError();
                         }
 
                     }
@@ -130,5 +163,44 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void sonidoEncendido() {
+        MediaPlayer ring = MediaPlayer.create(MainActivity.this,R.raw.powersound);
+        ring.start();
+    }
+
+    private void sonidoError() {
+        MediaPlayer ring = MediaPlayer.create(MainActivity.this,R.raw.errorsound);
+        ring.start();
+    }
+
+    private void registrarUserEnSQLite() {
+        ConexionSQLiteHelper conexionSQLiteHelper = new ConexionSQLiteHelper(getApplicationContext());
+        if (switchRemember.isChecked()) {
+            LocalUser user = new LocalUser();
+            user.setUsername(etUsername.getText().toString());
+            user.setPwd(etPwd.getText().toString());
+            user.setRemember(1);
+            conexionSQLiteHelper.insertUser(user);
+
+        } else {
+            conexionSQLiteHelper.changeToNoRemember();
+        }
+        conexionSQLiteHelper.close();
+
+    }
+    private void consultarUltimoUser() {
+        ConexionSQLiteHelper manager = new ConexionSQLiteHelper(this);
+        LocalUser localUser = manager.getUser();
+        manager.close();
+        if (localUser != null) {
+            if (localUser.getRemember() == 1) {
+                switchRemember.setChecked(true);
+                etUsername.setText(localUser.getUsername());
+                etPwd.setText(localUser.getPwd());
+            }
+        }
+
     }
 }

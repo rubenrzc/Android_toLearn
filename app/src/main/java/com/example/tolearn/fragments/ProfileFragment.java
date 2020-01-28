@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -45,9 +47,12 @@ public class ProfileFragment extends Fragment {
     private ImageView ivHeader;
     private CircleImageView CircleImageUser;
     private TextView etUsernameProf;
+    private TextView tvUsernameProfile;
+    private TextView tvEmail;
+    private TextView tvFullname;
+    private TextView tvCompany;
     private EditText etEmail;
     private EditText etFullName;
-    private EditText etBirthDate;
     private TextView tvCompProf;
     private ImageButton imgBtEdit;
     private ImageButton imgBtPhoto;
@@ -71,6 +76,25 @@ public class ProfileFragment extends Fragment {
         imgBtEdit = (ImageButton)root.findViewById(R.id.imgBtEdit);
         imgBtPhoto = (ImageButton)root.findViewById(R.id.imgBtPhoto);
         CircleImageUser = (CircleImageView)root.findViewById(R.id.CircleImageUser);
+        tvUsernameProfile = (TextView) root.findViewById(R.id.tvUsernameProfile);
+        tvEmail = (TextView) root.findViewById(R.id.tvEmail);
+        tvFullname = (TextView) root.findViewById(R.id.tvFullname);
+        tvCompany = (TextView) root.findViewById(R.id.tvCompany);
+
+        Animation animation= AnimationUtils.loadAnimation(getContext(), R.anim.left_in);
+        ivHeader.startAnimation(animation);
+        etUsernameProf.startAnimation(animation);
+        etEmail.startAnimation(animation);
+        etFullName.startAnimation(animation);
+        tvCompProf.startAnimation(animation);
+        imgBtEdit.startAnimation(animation);
+        imgBtPhoto.startAnimation(animation);
+        CircleImageUser.startAnimation(animation);
+        tvUsernameProfile.startAnimation(animation);
+        tvEmail.startAnimation(animation);
+        tvFullname.startAnimation(animation);
+        tvCompany.startAnimation(animation);
+
 
         etUsernameProf.setEnabled(false);
         etEmail.setEnabled(false);
@@ -85,6 +109,7 @@ public class ProfileFragment extends Fragment {
         etEmail.setText(user.getEmail());
         etFullName.setText(user.getFullname());
         tvCompProf.setText(user.getCompany().getName());
+
 
         //Bitmap bitmap = BitmapFactory.decodeByteArray(user.getPhoto() , 0, user.getPhoto() .length);
 
@@ -114,21 +139,26 @@ public class ProfileFragment extends Fragment {
                 imgBtEdit.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
+
+
+
                         user.setLogin(etUsernameProf.getText().toString());
+                        user.setEmail(etEmail.getText().toString());
+                        user.setFullname(etFullName.getText().toString());
 
                         UserInterface userInterface = UserAPIClient.getClient();
 
                         Call<Void>call=userInterface.edit(user);
                         call.enqueue(new Callback<Void>() {
-                            ProgressBar simpleProgressBar = (ProgressBar)root.findViewById(R.id.progressBar);
+                            //ProgressBar simpleProgressBar = (ProgressBar)root.findViewById(R.id.progressBar);
 
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if(response.code()==204){
                                     Log.d("mensaje","todo ok");
 
-                                    simpleProgressBar.setVisibility(View.VISIBLE);
-                                    simpleProgressBar.setProgress(1);
+                                    //simpleProgressBar.setVisibility(View.VISIBLE);
+                                    //simpleProgressBar.setProgress(1);
 
                                     Toast.makeText(getContext(), "Usuario modificado correctamente", Toast.LENGTH_LONG).show();
                                 }

@@ -44,7 +44,7 @@ public class NewDocFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View root= inflater.inflate(R.layout.fragment_profile, container, false);
+        View root= inflater.inflate(R.layout.fragment_new_doc, container, false);
 
         etTittle = (EditText)root.findViewById(R.id.etTittle);
         multilineEtDesc = (EditText)root.findViewById(R.id.multilineEtDesc);
@@ -54,24 +54,24 @@ public class NewDocFragment extends Fragment {
         rButtonVisible = (RadioButton)root.findViewById(R.id.rButtonVisible);
         spinnerArea = (Spinner)root.findViewById(R.id.spinnerArea);
 
-        llenarSpinnerArea();
+        //llenarSpinnerArea();
 
 
         imgBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addNewDocument();
+                //addNewDocument();
             }
         });
 
         bntUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comprobarDatosDocumento();
-                generarNuevoDocumento();
+                //comprobarDatosDocumento();
+                //generarNuevoDocumento();
             }
         });
-        return inflater.inflate(R.layout.fragment_new_doc, container, false);
+        return root;
     }
 
     private void comprobarDatosDocumento() {

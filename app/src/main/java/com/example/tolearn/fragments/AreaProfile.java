@@ -1,4 +1,4 @@
-package com.example.tolearn.fragments.profiles;
+package com.example.tolearn.fragments;
 
 
 import android.content.DialogInterface;
@@ -20,15 +20,15 @@ import com.example.tolearn.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DepartProfile extends Fragment {
+public class AreaProfile extends Fragment {
 
-    private EditText etNameDep;
-    private Button btnSaveDep;
-    private Button btnDiscardDep;
-    private Button btnUpload;
-    private ImageButton imgBtDelete;
+    private EditText etNameArea;
+    private Button btnSaveArea;
+    private Button btnDiscardArea;
+    private Button btnUploadArea;
+    private ImageButton imgBtDeleteArea;
 
-    public DepartProfile() {
+    public AreaProfile() {
         // Required empty public constructor
     }
 
@@ -36,30 +36,30 @@ public class DepartProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root= inflater.inflate(R.layout.fragment_depart_profile, container, false);
+        View root = inflater.inflate(R.layout.fragment_area_profile, container, false);
 
-        etNameDep = (EditText)root.findViewById(R.id.etNameArea);
-        btnSaveDep = (Button)root.findViewById(R.id.btnSaveArea);
-        btnDiscardDep = (Button)root.findViewById(R.id.btnDiscardDep);
-        btnUpload = (Button)root.findViewById(R.id.btnUploadArea);
-        imgBtDelete = (ImageButton) root.findViewById(R.id.imgBtDeleteArea);
+        etNameArea = (EditText)root.findViewById(R.id.etNameArea);
+        btnSaveArea = (Button)root.findViewById(R.id.btnSaveArea);
+        btnDiscardArea = (Button)root.findViewById(R.id.btnDiscardDep);
+        btnUploadArea = (Button)root.findViewById(R.id.btnUploadArea);
+        imgBtDeleteArea = (ImageButton) root.findViewById(R.id.imgBtDeleteArea);
 
-        btnSaveDep.setVisibility(View.GONE);
-        btnSaveDep.setEnabled(false);
+        btnSaveArea.setVisibility(View.GONE);
+        btnSaveArea.setEnabled(false);
 
-        btnUpload.setOnClickListener(new View.OnClickListener() {
+        btnUploadArea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnSaveDep.setVisibility(View.VISIBLE);
-                btnSaveDep.setEnabled(true);
+                btnSaveArea.setVisibility(View.VISIBLE);
+                btnSaveArea.setEnabled(true);
 
-                btnUpload.setVisibility(View.GONE);
-                btnUpload.setEnabled(false);
+                btnUploadArea.setVisibility(View.GONE);
+                btnUploadArea.setEnabled(false);
 
                 //TODO
             }
         });
-        btnDiscardDep.setOnClickListener(new View.OnClickListener() {
+        btnDiscardArea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getContext());
@@ -79,7 +79,7 @@ public class DepartProfile extends Fragment {
                 dialogo1.show();
             }
         });
-        imgBtDelete.setOnClickListener(new View.OnClickListener() {
+        imgBtDeleteArea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getContext());
@@ -89,7 +89,7 @@ public class DepartProfile extends Fragment {
                 dialogo1.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         //TODO
-                        Toast.makeText(getContext(), R.string.deleted, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.deletedArea, Toast.LENGTH_SHORT).show();
                     }
                 });
                 dialogo1.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -100,6 +100,9 @@ public class DepartProfile extends Fragment {
                 dialogo1.show();
             }
         });
+
+
+
 
         return root;
     }

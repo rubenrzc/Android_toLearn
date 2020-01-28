@@ -25,7 +25,7 @@ import retrofit2.http.Path;
  */
 public interface AreaInterface {
 
-    @POST
+    @POST(".")
     public Call <Void> create(@Body Area entity);
 
     @PUT("{id}")
