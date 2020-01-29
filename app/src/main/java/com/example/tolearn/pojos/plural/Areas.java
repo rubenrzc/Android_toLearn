@@ -7,14 +7,11 @@ import org.simpleframework.xml.Root;
 
 import java.util.Set;
 
-@Root(name="areas")
+//@Root(name="areas")
 public class Areas {
-    @ElementList(name = "area", inline = true)
+    //@ElementList(name = "area", inline = true)
     private Set<Area> areas;
-    public Areas(){}
-    public Areas(Set<Area> areas) {
-        this.areas = areas;
-    }
+
     public Set<Area> getAreas() {
         return areas;
     }

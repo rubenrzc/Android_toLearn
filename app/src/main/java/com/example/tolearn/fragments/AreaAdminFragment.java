@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,13 @@ import com.example.tolearn.R;
 import com.example.tolearn.adapters.AreaAdapter;
 import com.example.tolearn.interfaces.AreaInterface;
 import com.example.tolearn.pojos.Area;
+import com.example.tolearn.pojos.plural.Areas;
 import com.example.tolearn.retrofit.AreaAPIClient;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,11 +40,13 @@ import retrofit2.Response;
  */
 public class AreaAdminFragment extends Fragment {
 
-    private ArrayList<String> listArea;
+    private ArrayList<Area>listArea;
+    private Set<Area>area;
     private RecyclerView recycler;
     private AreaAdapter areaAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private Button btnAddArea;
+    private View root;
 
     public AreaAdminFragment() {
         // Required empty public constructor
@@ -50,7 +56,7 @@ public class AreaAdminFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root =  inflater.inflate(R.layout.fragment_area_admin, container, false);
+        root =  inflater.inflate(R.layout.fragment_area_admin, container, false);
 
         btnAddArea = root.findViewById(R.id.btnAddArea);
         btnAddArea.setOnClickListener(new View.OnClickListener() {
@@ -60,23 +66,13 @@ public class AreaAdminFragment extends Fragment {
             }
         });
 
+        area = llenarListAreas();
+        listArea = new ArrayList<Area>();
 
-        listArea = new ArrayList<String>();
 
-        listArea = llenarListAreas();
-        layoutManager = new LinearLayoutManager(getContext());
-        recycler = (RecyclerView) root.findViewById(R.id.reyclerArea);
-        recycler.setHasFixedSize(true);
-        recycler.setLayoutManager(layoutManager);
-        areaAdapter = new AreaAdapter(listArea);
-        recycler.setAdapter(areaAdapter);
 
-        areaAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_nav_areaAdmin_to_nav_areaProfile);
-            }
-        });
+
+
 
         return root;
     }
@@ -99,7 +95,6 @@ public class AreaAdminFragment extends Fragment {
                 }else{
                     Area area = new Area();
                     area.setName(input.getText().toString());
-
                     AreaInterface areaInterface = AreaAPIClient.getClient();
                     Call<Void> call = (Call<Void>)areaInterface.create(area);
                     call.enqueue(new Callback<Void>() {
@@ -127,12 +122,47 @@ public class AreaAdminFragment extends Fragment {
         dialogo1.show();
     }
 
-    private ArrayList<String> llenarListAreas() {
-        ArrayList<String>listAreas = new ArrayList<String>();
+    private Set<Area> llenarListAreas() {
+        AreaInterface areaInterface = AreaAPIClient.getClient();
 
+        Set<Area>listAreas = new HashSet<>();
+        Call<Areas> areas = areaInterface.FindAllArea();
+        areas.enqueue(new Callback<Areas>() {
+            @Override
+            public void onResponse(Call<Areas> call, Response<Areas> response) {
+                if (response.isSuccessful()){
+                    if(response.code()==200){
+                        listAreas(response.body());
+                        Log.d("msg","Estamos en el 200");
+                        layoutManager = new LinearLayoutManager(getContext());
+                        recycler = (RecyclerView) root.findViewById(R.id.reyclerArea);
+                        recycler.setHasFixedSize(true);
+                        recycler.setLayoutManager(layoutManager);
+                        areaAdapter = new AreaAdapter(area);
+                        recycler.setAdapter(areaAdapter);
 
+                        areaAdapter.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Navigation.findNavController(v).navigate(R.id.action_nav_areaAdmin_to_nav_areaProfile);
+                            }
+                        });
 
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Areas> call, Throwable t) {
+                Log.d("msg","Estamos en el on failure  "+t.getMessage());
+            }
+        });
         return listAreas;
+    }
+
+    private void listAreas(Areas body) {
+
     }
 
 }

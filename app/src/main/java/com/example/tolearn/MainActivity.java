@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
 
-                        Log.d("TRap","TRapatoni");
+                        Log.d("TRap","TRapatoni "+t.getMessage());
                         Toast.makeText(MainActivity.this, "MALAMENTE TRaP TRAP", Toast.LENGTH_SHORT).show();
 
                     }

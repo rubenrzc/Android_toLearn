@@ -7,14 +7,10 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import java.util.Set;
-@Root(name = "documents")
+//@Root(name = "documents")
 public class Documents {
-    @ElementList(name = "document", inline = true)
+    //@ElementList(name = "document", inline = true)
     private Set<Document> documents;
-    public Documents(){}
-    public Documents(Set<Document> documents) {
-        this.documents = documents;
-    }
     public Set<Document> getDocuments() {
         return documents;
     }

@@ -10,19 +10,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.tolearn.R;
+import com.example.tolearn.pojos.Area;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolderDatos>
                             implements View.OnClickListener{
 
-    ArrayList<String>listAreas;
+    ArrayList<Area>listAreas;
+
 
 
     private View.OnClickListener listener;
 
-    public AreaAdapter(ArrayList<String> listAreas) {
-        this.listAreas = listAreas;
+    public AreaAdapter(Set<Area> listAreas) {
+        this.listAreas.addAll(listAreas);
     }
 
     @NonNull
@@ -63,8 +66,8 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolderDato
             idAreaName = (TextView)itemView.findViewById(R.id.idAreaName);
         }
 
-        public void asignarDatos(String datos) {
-            idAreaName.setText(datos);
+        public void asignarDatos(Area area) {
+            idAreaName.setText(area.getName());
         }
     }
 }

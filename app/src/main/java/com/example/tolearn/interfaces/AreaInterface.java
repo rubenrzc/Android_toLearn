@@ -7,8 +7,10 @@ package com.example.tolearn.interfaces;
 
 
 import com.example.tolearn.pojos.Area;
+import com.example.tolearn.pojos.plural.Areas;
 
 import java.util.Collection;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -34,6 +36,6 @@ public interface AreaInterface {
     @DELETE("{id}")
     public void remove(@Path("id") Integer id);
 
-    @GET
-    public Call<Collection<Area>> FindAllArea();
+    @GET(".")
+    public Call<Areas> FindAllArea();
 }

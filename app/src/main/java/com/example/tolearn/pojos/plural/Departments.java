@@ -7,9 +7,9 @@ import org.simpleframework.xml.Root;
 
 import java.util.Set;
 
-@Root(name="departments")
+//@Root(name="departments")
 public class Departments {
-    @ElementList(name="department",inline = true)
+    //@ElementList(name="department",inline = true)
     private Set<Department> departments;
     public Departments(){
     }

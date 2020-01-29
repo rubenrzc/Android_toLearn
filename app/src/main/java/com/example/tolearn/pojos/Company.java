@@ -5,6 +5,9 @@
  */
 package com.example.tolearn.pojos;
 
+import com.example.tolearn.pojos.plural.Departments;
+import com.example.tolearn.pojos.plural.Users;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -28,9 +31,9 @@ public class Company implements Serializable {
     //@Element(name="cif")
     private String cif;
     //@ElementList(name = "users", inline = true)
-    private Set<User> users;
+    private Users users;
     //@ElementList(name = "departments", inline = true)
-    private Set<Department> departments;
+    private Departments departments;
 
     public int getId() {
         return id;
@@ -72,28 +75,29 @@ public class Company implements Serializable {
      * @return the users
      */
 
-    public Set<User> getUsers() {
+    public Users getUsers() {
         return users;
     }
 
     /**
      * @param users the users to set
      */
-    public void setUsers(Set<User> users) {
+    public void setUsers (Users users) {
+
         this.users = users;
     }
 
     /**
      * @return the departments
      */
-    public Set<Department> getDepartments() {
+    public Departments getDepartments() {
         return departments;
     }
 
     /**
      * @param departments the departments to set
      */
-    public void setDepartments(Set<Department> departments) {
+    public void setDepartments (Departments departments) {
         this.departments = departments;
     }
  

@@ -7,14 +7,11 @@ import org.simpleframework.xml.Root;
 
 import java.util.Set;
 
-@Root(name="users")
+//@Root(name="users")
 public class Users {
-    @ElementList(name = "user", inline = true)
+    //@ElementList(name = "user", inline = true)
     private Set<User>users;
-    public Users(){}
-    public Users(Set<User> users) {
-        this.users = users;
-    }
+
     public Set<User> getUsers() {
         return users;
     }

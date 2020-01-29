@@ -7,6 +7,8 @@ package com.example.tolearn.pojos;
 
 import android.text.Editable;
 
+import com.example.tolearn.pojos.plural.Documents;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -33,7 +35,7 @@ public class User implements Serializable {
     private String email;
     //@Element(name="fullName")
     private String fullname;
-   // @Element(name="status")
+    //@Element(name="status")
     private UserStatus status;
     //@Element(name="privilege")
     private UserPrivilege privilege;
@@ -50,7 +52,7 @@ public class User implements Serializable {
     //@Element(name="company")
     private Company company;
     //@ElementList(name = "documents", inline = true)
-    private Set<Document> documents;
+    private Documents documents;
 
     /**
      *
@@ -130,14 +132,14 @@ public class User implements Serializable {
      * @return
      */
 
-    public Set<Document> getDocuments() {
+    public Documents getDocuments() {
         return documents;
     }
 
     /**
      * @param documents
      */
-    public void setDocuments(Set<Document> documents) {
+    public void setDocuments(Documents documents) {
         this.documents = documents;
     }
 

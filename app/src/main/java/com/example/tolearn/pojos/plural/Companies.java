@@ -8,14 +8,11 @@ import org.simpleframework.xml.Root;
 
 import java.util.Set;
 
-@Root(name = "companies")
+//@Root(name = "companies")
 public class Companies {
-    @ElementList(name = "company", inline = true)
+    //@ElementList(name = "company", inline = true)
     private Set<Company> companies;
-    public Companies(){}
-    public Companies(Set<Company> companies) {
-        this.companies = companies;
-    }
+
     public Set<Company> getCompanies() {
         return companies;
     }

@@ -86,7 +86,7 @@ public class NewDocFragment extends Fragment {
         Byte[] doc;
         newDoc = new Document();
         newDoc.setName(etTittle.getText().toString());
-        newDoc.setDescription(multilineEtDesc.getText().toString());
+        //newDoc.setDescription(multilineEtDesc.getText().toString());
         if(rButtonVisible.isChecked()){
             newDoc.setVisibility(true);
         }else{

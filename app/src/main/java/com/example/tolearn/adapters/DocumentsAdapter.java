@@ -32,7 +32,7 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDocuments holder, int position) {
         holder.idTittle.setText(listaDocumentos.get(position).getName());
-        holder.idDesc.setText(listaDocumentos.get(position).getDescription());
+        //holder.idDesc.setText(listaDocumentos.get(position).getDescription());
         holder.idImage.setImageResource(R.drawable.user);
     }
 

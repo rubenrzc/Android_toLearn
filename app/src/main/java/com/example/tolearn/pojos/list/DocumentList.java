@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.example.tolearn.pojos;
+package com.example.tolearn.pojos.list;
 
+import com.example.tolearn.pojos.DocumentStatus;
+import com.example.tolearn.pojos.User;
 import com.example.tolearn.pojos.plural.Areas;
 
 import org.simpleframework.xml.Element;
@@ -12,17 +9,10 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 
-/**
- *
- * @author Ruben
- */
-//@Root(name="document")
-public class Document implements Serializable {
-
+//@Root(name = "documents")
+public class DocumentList implements Serializable {
     private static final long serialVersionUID = 1L;
     //@Element(name="id")
     private int id;
@@ -42,9 +32,7 @@ public class Document implements Serializable {
     private Byte[] documentContent;
     //@Element(name="status")
     private DocumentStatus status;
-
-    public Document() {
-    }
+    
 
     public String getName() {
         return name;
