@@ -1,12 +1,14 @@
 package com.example.tolearn.fragments;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -16,9 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +30,11 @@ import android.widget.Toast;
 import com.example.tolearn.MainActivity;
 import com.example.tolearn.MenuActivity;
 import com.example.tolearn.R;
+import com.example.tolearn.interfaces.AreaInterface;
 import com.example.tolearn.interfaces.UserInterface;
+import com.example.tolearn.pojos.Area;
 import com.example.tolearn.pojos.User;
+import com.example.tolearn.retrofit.AreaAPIClient;
 import com.example.tolearn.retrofit.UserAPIClient;
 
 import java.io.ByteArrayOutputStream;
@@ -57,7 +64,8 @@ public class ProfileFragment extends Fragment {
     private ImageButton imgBtEdit;
     private ImageButton imgBtPhoto;
     private User user;
-    private int progress=0;
+    private Button btnChangePwd;
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -80,6 +88,7 @@ public class ProfileFragment extends Fragment {
         tvEmail = (TextView) root.findViewById(R.id.tvEmail);
         tvFullname = (TextView) root.findViewById(R.id.tvFullname);
         tvCompany = (TextView) root.findViewById(R.id.tvCompany);
+        btnChangePwd = (Button) root.findViewById(R.id.btnChangePwd);
 
         Animation animation= AnimationUtils.loadAnimation(getContext(), R.anim.left_in);
         ivHeader.startAnimation(animation);
@@ -94,6 +103,7 @@ public class ProfileFragment extends Fragment {
         tvEmail.startAnimation(animation);
         tvFullname.startAnimation(animation);
         tvCompany.startAnimation(animation);
+        btnChangePwd.startAnimation(animation);
 
 
         etUsernameProf.setEnabled(false);
@@ -109,11 +119,17 @@ public class ProfileFragment extends Fragment {
         etEmail.setText(user.getEmail());
         etFullName.setText(user.getFullname());
         tvCompProf.setText(user.getCompany().getName());
+        /*if(user.getPhoto().toString()==null){
+            Bitmap bmp = BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length);
+            CircleImageUser.setImageBitmap(bmp);
+        }*/
 
-
-        //Bitmap bitmap = BitmapFactory.decodeByteArray(user.getPhoto() , 0, user.getPhoto() .length);
-
-        //CircleImageUser.setImageBitmap(bitmap);
+        btnChangePwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cambiarContrasenaAlertDialog();
+            }
+        });
 
         imgBtEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,6 +193,58 @@ public class ProfileFragment extends Fragment {
 
         return root;
     }
+
+    private void cambiarContrasenaAlertDialog() {
+        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getContext());
+        dialogo1.setTitle(R.string.btnAddArea);
+        dialogo1.setMessage(R.string.addArea);
+        final EditText pwd = new EditText(getContext());
+        final EditText confirmPwd = new EditText(getContext());
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        pwd.setLayoutParams(lp);
+        dialogo1.setView(pwd);
+
+        confirmPwd.setLayoutParams(lp);
+        dialogo1.setView(confirmPwd);
+        dialogo1.setCancelable(false);
+        dialogo1.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                if(pwd.getText().toString()==confirmPwd.getText().toString()){
+                    user.setPassword(pwd.getText().toString());
+                    UserInterface userInterface = UserAPIClient.getClient();
+
+                    Call<Void>call = userInterface.edit(user);
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if(response.code()==200){
+                                Toast.makeText(getContext(), "Password have been changed",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Log.d("Error","Estamos en el onFailure"+t.getMessage());
+
+                        }
+                    });
+
+                }else{
+                  confirmPwd.setError(""+R.string.errorChangePwd);
+                }
+
+            }
+        });
+        dialogo1.setNegativeButton(R.string.btnDiscard, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+
+            }
+        });
+        dialogo1.show();
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

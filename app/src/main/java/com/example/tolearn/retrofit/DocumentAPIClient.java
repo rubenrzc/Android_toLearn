@@ -7,8 +7,15 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 import static retrofit2.converter.simplexml.SimpleXmlConverterFactory.create;
 
+/**
+ * @Author Ruben
+ */
 public class DocumentAPIClient {
-    private static String API_BASE_URL = "http://192.168.20.153:8080/grupo5_reto2_server/webresources/document/";
+    private static String API_BASE_URL = "http://192.168.0.17:8080/grupo5_reto2_server/webresources/document/";
+    /**
+     * This method convert the XML
+     * @return a DocumentInterface
+     */
     public static DocumentInterface getClient(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

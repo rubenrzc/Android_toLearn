@@ -21,24 +21,35 @@ import retrofit2.http.Path;
 
 /**
  *
- * @author Ruben
+ * @author Andoni
  */
 public interface CompanyInterface {
 
-
-
+    /**
+     * @param company
+     **/
     @POST
     public  Call <Void> create(@Body Company company);
-
+    /**
+     * @param company
+     */
     @PUT("{id}")
     public void edit(@Body Company company);
 
+    /**
+     * @param id
+     */
     @DELETE("{id}")
     public void remove(@Path("id") Integer id);
-
+    /**
+     * @param id
+     * @return Company
+     */
     @GET("{id}")
     public Call<Company> find(@Path("id") Integer id);
-
+    /**
+     * @return Companies
+     */
     @GET
     public Call<Companies> findAll();
 }

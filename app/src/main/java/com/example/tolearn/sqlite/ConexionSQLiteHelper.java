@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+/**
+ * @Author Andoni
+ * This class take care of SQLite
+ */
 public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "dbUser";
@@ -19,6 +23,10 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * it creats the USER_TABLE
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + USER_TABLE +
@@ -28,8 +36,13 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
+
+    /**
+     * This method takes care of insert or update
+     * the LocalUser on the USER_TABLE
+     * @param user LocalUser type object
+     */
     public void insertUser(LocalUser user) {
         if(findUser()==null) {
             sqLiteDatabase.insert(USER_TABLE, null, user.insertValues());
@@ -38,10 +51,20 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         }
 
     }
+
+    /**
+     * LocalUser getter method
+     * @return LocalUser object
+     */
     public LocalUser getUser() {
         return findUser();
     }
 
+    /**
+     * This method return the last
+     * user on the device
+     * @return LocalUser object
+     */
     public LocalUser findUser(){
         SQLiteDatabase db = this.getReadableDatabase();
         LocalUser user = null;
@@ -53,6 +76,10 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         return user;
     }
 
+    /**
+     * This method change the
+     * user.remember to 0
+     */
     public void changeToNoRemember(){
         LocalUser user = null;
         user = findUser();

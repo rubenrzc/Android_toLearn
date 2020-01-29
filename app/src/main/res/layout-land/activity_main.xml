@@ -86,6 +86,7 @@
         android:id="@+id/btnRecover"
         android:layout_width="202dp"
         android:layout_height="37dp"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:text="@string/recover"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -31,7 +31,8 @@
     <string name="tvBithDate">Fecha Nac.: </string>
     <string name="tvCompany">Compañia: </string>
     <string name="tvCompProf">Compañia de usuario</string>
-
+    <string name="btnChangePwd">Clique aqui para cambiar contraseña</string>
+    <string name="errorChangePwd">No coinciden las contraseñas</string>
 
     <!-- New Doc -->
     <string name="etTittle">Titulo</string>
@@ -42,7 +43,7 @@
     <string name="area">Seleccion area</string>
 
     <!-- departmenr admin -->
-    <string name="DepTitle">Administracion de area/string>
+    <string name="DepTitle">Administracion de area</string>
     <string name="btnAddDepart">Nuevo departamento</string>
     <string name="addDep">Introduce departamento</string>
     <string name="add">Añadir</string>

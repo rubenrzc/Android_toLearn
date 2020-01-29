@@ -31,7 +31,8 @@
     <string name="tvBithDate">Birth date: </string>
     <string name="tvCompany">Company: </string>
     <string name="tvCompProf">User company </string>
-
+    <string name="btnChangePwd">Click here to change password</string>
+    <string name="errorChangePwd">Password does not mach</string>
 
     <!-- New Doc -->
     <string name="etTittle">Tittle</string>

@@ -3,11 +3,9 @@ package com.example.tolearn;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.content.ContentValues;
+
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -34,7 +32,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-
+/**
+ * @Author Andoni
+ * Main activity of the aplication,
+ * it takes care of login
+ */
 public class MainActivity extends AppCompatActivity {
 
     private Button btnLogIn;
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         animationView.setVisibility(View.GONE);
 
+
         btnLogIn = (Button) findViewById(R.id.btnLogIn);
         btnRecover = (Button) findViewById(R.id.btnRecover);
         etUsername = (EditText) findViewById(R.id.etUsername);
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         tvPwd = (TextView) findViewById(R.id.tvPwd);
         tvTittle = (TextView) findViewById(R.id.tvTittle);
         switchRemember = (Switch) findViewById(R.id.switchRemember);
+
         network = isInternet();
 
         Animation animation= AnimationUtils.loadAnimation(MainActivity.this, R.anim.right_in);
@@ -89,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
         recoverPassword();
     }
 
+    /**
+     * this method launch the RecoverPassword activity
+     */
     private void recoverPassword() {
         btnRecover.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * it checks if the device have internet conexion
+     * @return true if the user have internet conexion
+     */
     private boolean isInternet() {
         boolean ret = false;
         ConnectivityManager connectivityManager;
@@ -115,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
         return ret;
     }
 
+    /**
+     * this method launch the menu activity
+     */
     private void menuLauncher() {
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +140,10 @@ public class MainActivity extends AppCompatActivity {
                 checkLoginData();
             }
 
+            /**
+             * This method takes care of login
+             * the user on the aplication
+             */
             private void checkLoginData() {
                 final String pwd ;
                 String loginName;
@@ -159,7 +177,12 @@ public class MainActivity extends AppCompatActivity {
                         if (response.code() == 401){
                             etPwd.setError("User not found");
                             sonidoError();
-                            stopAnimation();
+                            //stopAnimation();
+                        }
+                        if (response.code() == 404){
+                            etPwd.setError("User not found");
+                            sonidoError();
+                            //stopAnimation();
                         }
 
                     }
@@ -167,25 +190,36 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
 
-                        Log.d("TRap","TRapatoni");
+                        Log.d("TRap","TRapatoni "+t.getMessage());
                         Toast.makeText(MainActivity.this, "MALAMENTE TRaP TRAP", Toast.LENGTH_SHORT).show();
-                        stopAnimation();
+                        //stopAnimation();
                     }
                 });
             }
         });
     }
 
+    /**
+     * This method launch a sound
+     */
     private void sonidoEncendido() {
         MediaPlayer ring = MediaPlayer.create(MainActivity.this,R.raw.powersound);
         ring.start();
     }
 
+    /**
+     * This method launch a sound
+     */
     private void sonidoError() {
         MediaPlayer ring = MediaPlayer.create(MainActivity.this,R.raw.errorsound);
         ring.start();
     }
 
+    /**
+     * This method chech the status of the
+     * Switch switchRemember, if it is checked its
+     * save the user in the SQLite database
+     */
     private void registrarUserEnSQLite() {
         ConexionSQLiteHelper conexionSQLiteHelper = new ConexionSQLiteHelper(getApplicationContext());
         if (switchRemember.isChecked()) {
@@ -201,6 +235,11 @@ public class MainActivity extends AppCompatActivity {
         conexionSQLiteHelper.close();
 
     }
+
+    /**
+     * This method takes care of remember the last
+     * user that have made login in his smartphonme
+     */
     private void consultarUltimoUser() {
         ConexionSQLiteHelper manager = new ConexionSQLiteHelper(this);
         LocalUser localUser = manager.getUser();
@@ -214,9 +253,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    private void stopAnimation() {
+    /*private void stopAnimation() {
         final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingRecover);
-        animationView.pauseAnimation();
         animationView.setVisibility(View.GONE);
-    }
+    }*/
 }

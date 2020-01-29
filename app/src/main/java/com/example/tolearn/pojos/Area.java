@@ -18,7 +18,6 @@ import java.util.Set;
 
 
 /**
- *
  * @author Andoni
  */
 //@Root(name="area")
@@ -34,10 +33,16 @@ public class Area implements Serializable {
     //@ElementList(name = "documents", inline = true)
     private Set<Document> documents;
 
+    /**
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
@@ -57,7 +62,6 @@ public class Area implements Serializable {
     /**
      * @return the departments
      */
-    
     public Set<Department> getDepartments() {
         return departments;
     }
@@ -70,7 +74,6 @@ public class Area implements Serializable {
     /**
      * @return the documents
      */
-    
     public Set<Document> getDocuments() {
         return documents;
     }

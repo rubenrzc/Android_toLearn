@@ -20,6 +20,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * @Author Ruben
+ * this activity is the activity
+ * in charge of recover the user password
+ */
 public class RecoverPassword extends AppCompatActivity {
 
     private EditText etEmail;
@@ -39,6 +44,10 @@ public class RecoverPassword extends AppCompatActivity {
         btnRecover = (Button) findViewById(R.id.btnRecover);
         btnCancel = (Button) findViewById(R.id.btnCancel);
 
+        /**
+         * This is the setOnClickListener of the
+         * btnRecover Button
+         */
         btnRecover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +58,10 @@ public class RecoverPassword extends AppCompatActivity {
                 checkEmailExist();
             }
         });
+        /**
+         * This is the setOnClickListener of the
+         * btnCancel Button
+         */
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +71,11 @@ public class RecoverPassword extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method is used to check if the email exist
+     * and if the email exist the server send a new
+     * passwords to the user
+     */
     private void checkEmailExist() {
         String email = etEmail.getText().toString();
         User user = new User();
@@ -67,6 +85,11 @@ public class RecoverPassword extends AppCompatActivity {
 
         Call<Void> call = (Call<Void>) userInterface.recoverPassword(user);
         call.enqueue(new Callback<Void>() {
+            /**
+             *This method takes care of
+             * response codes
+             * @param response answer of the server
+             */
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() == 200){
@@ -83,14 +106,20 @@ public class RecoverPassword extends AppCompatActivity {
 
                 }
             }
+
+            /**
+             *If call goes wrong it gets out here
+             */
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingRecover);
-                animationView.setVisibility(View.GONE);
-            }
+                stopAnimation();
+        }
         });
     }
 
+    /**
+     * This method is used to stop the animation
+     */
     private void stopAnimation() {
         final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingRecover);
         animationView.pauseAnimation();

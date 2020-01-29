@@ -7,9 +7,15 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
+/**
+ * @Author Fran
+ */
 public class UserAPIClient {
-    private static String API_BASE_URL = "http://192.168.20.153:8080/grupo5_reto2_server/webresources/user/";
-
+    private static String API_BASE_URL = "http://192.168.0.17:8080/grupo5_reto2_server/webresources/user/";
+    /**
+     * This method convert the XML
+     * @return a UserInterface
+     */
     public static UserInterface getClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

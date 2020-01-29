@@ -32,14 +32,19 @@ public class Company implements Serializable {
     //@ElementList(name = "departments", inline = true)
     private Set<Department> departments;
 
+    /**
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
-
     /**
      * @return the name
      */

@@ -22,7 +22,11 @@ import com.example.tolearn.fragments.ProfileFragment;
 import com.example.tolearn.pojos.User;
 import com.google.android.material.navigation.NavigationView;
 
-
+/**
+ * @Author Andoni and Ruben
+ * this activity takes care of
+ * launching the fragments
+ */
 public class MenuActivity extends AppCompatActivity {
 
 

@@ -4,6 +4,12 @@ import android.content.ContentValues;
 
 import java.io.Serializable;
 
+/**
+ * @Author Andoni
+ * This is LocalUser object, it conteins
+ * de data that we need to save to
+ * remember the last user
+ */
 public class LocalUser implements Serializable {
 
     private int id;
@@ -52,6 +58,12 @@ public class LocalUser implements Serializable {
         this.remember = remember;
     }
 
+    /**
+     * It set the LocalUser values on the
+     * contenValues
+     * @return the values that are going to be
+     * inserted on the SQLite database
+     */
     public ContentValues insertValues() {
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", getUsername());
