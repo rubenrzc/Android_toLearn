@@ -1,0 +1,75 @@
+<resources>
+    <!-- Main -->
+
+    <string name="switchRemember">Recuerdame</string>
+    <string name="app_name">2dam2curious.toLearn</string>
+    <string name="tittle">.ToLearn();</string>
+    <string name="username">Nombre de Usuario</string>
+    <string name="pwd">Contraseña</string>
+    <string name="login">LogIn</string>
+    <string name="recover">Recuperar contraseña</string>
+    <string name="open">Abrir</string>
+    <string name="close">Cerrar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- departmenr admin -->
+    <string name="btnRecover">Recordar contraseña</string>
+    <string name="etEmail">Email</string>
+    <string name="tvRecover">Inserta tu email para recuperar</string>
+    <string name="bntCancel">Cancelar</string>
+
+    <!-- Fragments -->
+    <!-- PDf -->
+    <string name="search">Busqueda</string>
+    <!-- Profile -->
+    <string name="btnNewImage">Cambiar imagen</string>
+    <string name="tvUsernameProfile">Nombre de usuario : </string>
+    <string name="tvEmail">Email: </string>
+    <string name="tvFullname">Nombre: </string>
+    <string name="tvBithDate">Fecha Nac.: </string>
+    <string name="tvCompany">Compañia: </string>
+    <string name="tvCompProf">Compañia de usuario</string>
+
+
+    <!-- New Doc -->
+    <string name="etTittle">Titulo</string>
+    <string name="multilineEtDesc">Descripcion</string>
+    <string name="bntUpload">Cargar documento</string>
+    <string name="btnDiscard">Descartar</string>
+    <string name="visible">Visible</string>
+    <string name="area">Seleccion area</string>
+
+    <!-- departmenr admin -->
+    <string name="DepTitle">Administracion de area/string>
+    <string name="btnAddDepart">Nuevo departamento</string>
+    <string name="addDep">Introduce departamento</string>
+    <string name="add">Añadir</string>
+    <string name="departEx">ejemplo</string>
+
+
+    <!-- departmenr profile -->
+    <string name="etNameDep">Nombre de departamento</string>
+    <string name="btnUploadDep">Subir archivo</string>
+    <string name="btnSave">Guardar</string>
+    <string name="warning">Peligro</string>
+    <string name="areYouSure">Desea cancelar la operacion</string>
+    <string name="yes">Si deseo cancelar la operacion</string>
+    <string name="no">No</string>
+    <string name="delete">¿?</string>
+    <string name="deleted">Department have been deleted</string>
+
+    <!-- area administrate -->
+    <string name="btnAddArea">New area</string>
+    <string name="addArea">Introduce area name</string>
+
+    <!-- area profile -->
+    <string name="etNameArea">Area name</string>
+    <string name="btnUploadArea">Upload area</string>
+    <string name="deletedArea">Area have been deleted</string>
+
+    <!-- check users -->
+    <string name="btnAddUser">New user</string>
+    <string name="btnAceptAll">Verify all</string>
+</resources>

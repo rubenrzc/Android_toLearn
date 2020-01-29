@@ -23,6 +23,7 @@ import com.example.tolearn.pojos.plural.Documents;
 import com.example.tolearn.retrofit.DocumentAPIClient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,6 +43,7 @@ public class PdfFragment extends Fragment {
     private DocumentsAdapter documentdapter;
     private RecyclerView.LayoutManager layoutManager;
     private View root;
+
 
     public PdfFragment() {
         // Required empty public constructor
@@ -75,34 +77,38 @@ public class PdfFragment extends Fragment {
 
 
         DocumentInterface documentInterface = DocumentAPIClient.getClient();
-        Set<Documents>listDocuments = new HashSet<>();
+        Set<Document>listDocuments = new HashSet<>();
         Call<Documents>documents = documentInterface.findAll();
         documents.enqueue(new Callback<Documents>() {
             @Override
             public void onResponse(Call<Documents> call, Response<Documents> response) {
                 if(response.isSuccessful()){
                     if(response.code()==200){
-                        listDocuments(response.body());
+                        Set<Document> doc = new HashSet<Document>();
+                        for (Document d : response.body().getDocuments()) {
+                            doc.add(d);
+                        }
+                        Log.d("msg","tamaño  "+ doc.size());
 
-                        Log.d("msg","Estamos en el 200");
+                        Document[] docs = new Document[doc.size()];
+                        doc.toArray(docs);
+                        ArrayList<Document> listDocs = new ArrayList<Document>(Arrays.asList(docs));
                         layoutManager = new LinearLayoutManager(getContext());
                         recycler = (RecyclerView) root.findViewById(R.id.recyclerView);
                         recycler.setHasFixedSize(true);
                         recycler.setLayoutManager(layoutManager);
-                        documentdapter = new DocumentsAdapter(docs);
+                        documentdapter = new DocumentsAdapter(listDocs);
                         recycler.setAdapter(documentdapter);
 
-                        documentdapter.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Navigation.findNavController(v).navigate(R.id.action_nav_areaAdmin_to_nav_areaProfile);
-                            }
-                        });
+
+                        Log.d("msg","Estamos en el 200");
 
                     }
                 }
 
             }
+
+
 
             @Override
             public void onFailure(Call<Documents> call, Throwable t) {
@@ -114,10 +120,8 @@ public class PdfFragment extends Fragment {
     }
 
     private void listDocuments(Documents documents) {
-        Set<Documents> doc = new HashSet<>();
-        for (Document d : documents.getDocuments()) {
-            doc.add(documents);
-        }
+
+
     }
 
 }

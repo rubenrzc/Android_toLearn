@@ -42,7 +42,7 @@ public interface UserInterface {
      * 
      * @return 
      */
-    @GET
+    @GET(".")
     public Call<Users> findAll();
 
     /**

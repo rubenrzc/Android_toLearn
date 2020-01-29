@@ -78,7 +78,7 @@ public class RecoverPassword extends AppCompatActivity {
                 } else if (response.code() == 400){
                     Toast.makeText(getApplicationContext(),"Email not found",Toast.LENGTH_LONG).show();
                 } else if (response.code() == 401){
-                    etEmail.setError("That email does not exist ");
+                    etEmail.setError("Not authoriced");
                     stopAnimation();
 
                 }

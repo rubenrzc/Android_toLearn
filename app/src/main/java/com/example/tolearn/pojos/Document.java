@@ -10,6 +10,7 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
@@ -33,7 +34,7 @@ public class Document implements Serializable {
     //@ElementList(name = "areas", inline = true)
     private Set<Area> areas;
     //@Element(name="uploadDate")
-    private Date uploadDate;
+    private String uploadDate;
     //@Element(name="visibility")
     private Boolean visibility;
     //@ElementList(name = "documentContent", inline = true)
@@ -77,12 +78,19 @@ public class Document implements Serializable {
         this.areas = areas;
     }
 
-    public Date getUploadDate() {
-        return uploadDate;
+    public Date getbDate() {
+        Date resultado=null;
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss");
+            resultado= formatter.parse(uploadDate);
+        }catch (Exception e){
+            resultado=new Date();
+        }
+        return resultado;
     }
 
-    public void setUploadDate(Date uploadDate) {
-        this.uploadDate = uploadDate;
+    public void setbDate(Date bDate) {
+        this.uploadDate = bDate.toString();
     }
 
     public Boolean getVisibility() {

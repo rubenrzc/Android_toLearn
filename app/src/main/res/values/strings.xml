@@ -64,7 +64,6 @@
     <string name="btnAddArea">New area</string>
     <string name="addArea">Introduce area name</string>
 
-
     <!-- area profile -->
     <string name="etNameArea">Area name</string>
     <string name="btnUploadArea">Upload area</string>
@@ -73,8 +72,4 @@
     <!-- check users -->
     <string name="btnAddUser">New user</string>
     <string name="btnAceptAll">Verify all</string>
-
-
-
-
 </resources>

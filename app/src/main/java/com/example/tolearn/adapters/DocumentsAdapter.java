@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tolearn.R;
 import com.example.tolearn.pojos.Document;
+import com.example.tolearn.pojos.plural.Documents;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.ViewHolderDocuments>
         implements View.OnClickListener{
@@ -21,12 +23,12 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.View
     private View.OnClickListener listener;
 
     public DocumentsAdapter(ArrayList<Document> listaDocumentos) {
-        this.listaDocumentos = listaDocumentos;
+        this.listaDocumentos=listaDocumentos;
     }
 
     @Override
     public ViewHolderDocuments onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_pdf,null,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_document,null,false);
 
         return new ViewHolderDocuments(view);
     }
@@ -58,8 +60,8 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.View
 
         public ViewHolderDocuments(@NonNull View itemView) {
             super(itemView);
-            idTittle = (TextView)itemView.findViewById(R.id.idTittle);
-            idDesc = (TextView)itemView.findViewById(R.id.idDesc);
+            idTittle = (TextView)itemView.findViewById(R.id.idTittleDoc);
+            idDesc = (TextView)itemView.findViewById(R.id.idDescDoc);
 
         }
     }
