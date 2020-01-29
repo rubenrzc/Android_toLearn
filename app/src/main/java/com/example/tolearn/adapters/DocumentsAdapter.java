@@ -14,9 +14,11 @@ import com.example.tolearn.pojos.Document;
 
 import java.util.ArrayList;
 
-public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.ViewHolderDocuments> {
+public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.ViewHolderDocuments>
+        implements View.OnClickListener{
 
     ArrayList<Document>listaDocumentos;
+    private View.OnClickListener listener;
 
     public DocumentsAdapter(ArrayList<Document> listaDocumentos) {
         this.listaDocumentos = listaDocumentos;
@@ -33,24 +35,32 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.View
     public void onBindViewHolder(@NonNull ViewHolderDocuments holder, int position) {
         holder.idTittle.setText(listaDocumentos.get(position).getName());
         holder.idDesc.setText(listaDocumentos.get(position).getDescription());
-        holder.idImage.setImageResource(R.drawable.user);
     }
 
     @Override
     public int getItemCount() {
         return listaDocumentos.size();
     }
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+    @Override
+    public void onClick(View v) {
+        if(listener!=null){
+            listener.onClick(v);
+        }
+    }
 
     public class ViewHolderDocuments extends RecyclerView.ViewHolder {
 
         TextView idTittle,idDesc;
-        ImageView idImage;
+
 
         public ViewHolderDocuments(@NonNull View itemView) {
             super(itemView);
             idTittle = (TextView)itemView.findViewById(R.id.idTittle);
             idDesc = (TextView)itemView.findViewById(R.id.idDesc);
-            idImage = (ImageView) itemView.findViewById(R.id.idImage);
+
         }
     }
 }

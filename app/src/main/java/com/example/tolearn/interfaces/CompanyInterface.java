@@ -6,8 +6,10 @@
 package com.example.tolearn.interfaces;
 
 import com.example.tolearn.pojos.Company;
+import com.example.tolearn.pojos.plural.Companies;
 
 import java.util.Collection;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -38,5 +40,5 @@ public interface CompanyInterface {
     public Call<Company> find(@Path("id") Integer id);
 
     @GET
-    public Call<Collection<Company>> findAll();
+    public Call<Companies> findAll();
 }

@@ -22,6 +22,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.tolearn.interfaces.UserInterface;
 import com.example.tolearn.pojos.User;
 import com.example.tolearn.retrofit.UserAPIClient;
@@ -46,10 +47,14 @@ public class MainActivity extends AppCompatActivity {
     private Switch switchRemember;
     private ConexionSQLiteHelper conn;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingMain);
+
+        animationView.setVisibility(View.GONE);
 
         btnLogIn = (Button) findViewById(R.id.btnLogIn);
         btnRecover = (Button) findViewById(R.id.btnRecover);
@@ -114,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingMain);
+                animationView.setVisibility(View.VISIBLE);
+                animationView.playAnimation();
+                animationView.loop(true);
                 checkLoginData();
             }
 
@@ -145,10 +154,12 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
                             intent.putExtra("user",response.body());
                             startActivity(intent);
+
                         }
                         if (response.code() == 401){
                             etPwd.setError("User not found");
                             sonidoError();
+                            stopAnimation();
                         }
 
                     }
@@ -158,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Log.d("TRap","TRapatoni");
                         Toast.makeText(MainActivity.this, "MALAMENTE TRaP TRAP", Toast.LENGTH_SHORT).show();
-
+                        stopAnimation();
                     }
                 });
             }
@@ -202,5 +213,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    }
+    private void stopAnimation() {
+        final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingRecover);
+        animationView.pauseAnimation();
+        animationView.setVisibility(View.GONE);
     }
 }

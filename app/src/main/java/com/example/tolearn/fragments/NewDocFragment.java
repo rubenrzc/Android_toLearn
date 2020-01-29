@@ -3,7 +3,10 @@ package com.example.tolearn.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.tolearn.R;
 import com.example.tolearn.pojos.Document;
 import com.example.tolearn.pojos.DocumentStatus;
@@ -46,6 +50,10 @@ public class NewDocFragment extends Fragment {
 
         View root= inflater.inflate(R.layout.fragment_new_doc, container, false);
 
+        final LottieAnimationView animationView = (LottieAnimationView)root.findViewById(R.id.animationLoadingNewDoc);
+        animationView.setVisibility(View.GONE);
+
+
         etTittle = (EditText)root.findViewById(R.id.etTittle);
         multilineEtDesc = (EditText)root.findViewById(R.id.multilineEtDesc);
         imgBtnAdd = (ImageButton)root.findViewById(R.id.imgBtnAdd);
@@ -67,6 +75,9 @@ public class NewDocFragment extends Fragment {
         bntUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final LottieAnimationView animationView = (LottieAnimationView)root.findViewById(R.id.animationLoadingNewDoc);
+                animationView.setVisibility(View.VISIBLE);
+                animationView.playAnimation();
                 //comprobarDatosDocumento();
                 //generarNuevoDocumento();
             }
@@ -112,6 +123,7 @@ public class NewDocFragment extends Fragment {
                 ,android.R.layout.simple_spinner_item,listSpinner);
         spinnerArea.setAdapter(adapter);*/
     }
+
 
 
 

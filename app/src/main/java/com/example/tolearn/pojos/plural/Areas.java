@@ -11,10 +11,7 @@ import java.util.Set;
 public class Areas {
     @ElementList(name = "area", inline = true)
     private Set<Area> areas;
-    public Areas(){}
-    public Areas(Set<Area> areas) {
-        this.areas = areas;
-    }
+
     public Set<Area> getAreas() {
         return areas;
     }

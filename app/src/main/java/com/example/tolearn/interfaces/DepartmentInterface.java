@@ -12,6 +12,7 @@ import com.example.tolearn.pojos.Department;
 import com.example.tolearn.pojos.plural.Departments;
 
 import java.util.Collection;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

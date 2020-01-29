@@ -6,6 +6,8 @@
 package com.example.tolearn.interfaces;
 
 import com.example.tolearn.pojos.Document;
+import com.example.tolearn.pojos.plural.Documents;
+import com.example.tolearn.pojos.plural.ListDocuments;
 
 import java.util.Collection;
 
@@ -24,7 +26,7 @@ import retrofit2.http.Path;
 
 public interface DocumentInterface {
 
-    @POST
+    @POST(".")
     public  Call <Void> createNewDocument(@Body Document document);
 
     @PUT
@@ -36,7 +38,7 @@ public interface DocumentInterface {
     @GET("{id}")
     public Call<Document> find(@Path("id") int id);
 
-    @GET
-    public Call<Collection<Document>> findAll();
+    @GET(".")
+    public Call<Documents> findAll();
     
 }

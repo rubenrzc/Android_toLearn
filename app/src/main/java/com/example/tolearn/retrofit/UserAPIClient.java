@@ -8,7 +8,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class UserAPIClient {
-    private static String API_BASE_URL = "http://192.168.20.148:8080/grupo5_reto2_server/webresources/user/";
+    private static String API_BASE_URL = "http://192.168.20.153:8080/grupo5_reto2_server/webresources/user/";
 
     public static UserInterface getClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

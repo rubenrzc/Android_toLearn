@@ -7,6 +7,7 @@ package com.example.tolearn.interfaces;
 
 
 import com.example.tolearn.pojos.User;
+import com.example.tolearn.pojos.plural.Users;
 
 import java.util.Collection;
 
@@ -42,7 +43,7 @@ public interface UserInterface {
      * @return 
      */
     @GET
-    public Call<Collection<User>> findAll();
+    public Call<Users> findAll();
 
     /**
      *

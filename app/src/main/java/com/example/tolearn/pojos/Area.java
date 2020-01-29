@@ -5,6 +5,9 @@
  */
 package com.example.tolearn.pojos;
 
+import com.example.tolearn.pojos.plural.Departments;
+import com.example.tolearn.pojos.plural.Documents;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
