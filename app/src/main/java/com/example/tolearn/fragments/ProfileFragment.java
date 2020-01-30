@@ -268,57 +268,6 @@ public class ProfileFragment extends Fragment {
                 }
         );
         alertDialog.show();
-
-
-
-        /*AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getContext());
-        dialogo1.setTitle(R.string.btnAddArea);
-        dialogo1.setMessage(R.string.addArea);
-        final EditText pwd = new EditText(getContext());
-        final EditText confirmPwd = new EditText(getContext());
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
-        pwd.setLayoutParams(lp);
-        dialogo1.setView(pwd);
-
-        confirmPwd.setLayoutParams(lp);
-        dialogo1.setView(confirmPwd);
-        dialogo1.setCancelable(false);
-        dialogo1.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogo1, int id) {
-                if(pwd.getText().toString()==confirmPwd.getText().toString()){
-                    user.setPassword(pwd.getText().toString());
-                    UserInterface userInterface = UserAPIClient.getClient();
-
-                    Call<Void>call = userInterface.edit(user);
-                    call.enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            if(response.code()==200){
-                                Toast.makeText(getContext(), "Password have been changed",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
-                            Log.d("Error","Estamos en el onFailure"+t.getMessage());
-
-                        }
-                    });
-
-                }else{
-                  confirmPwd.setError(""+R.string.errorChangePwd);
-                }
-
-            }
-        });
-        dialogo1.setNegativeButton(R.string.btnDiscard, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogo1, int id) {
-
-            }
-        });
-        dialogo1.show();*/
     }
 
     @Override
