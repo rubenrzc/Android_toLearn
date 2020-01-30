@@ -1,4 +1,5 @@
 package com.example.tolearn.retrofit;
+import com.example.tolearn.R;
 import com.example.tolearn.interfaces.CompanyInterface;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -11,7 +12,7 @@ import static retrofit2.converter.simplexml.SimpleXmlConverterFactory.create;
  * @Author Andoni
  */
 public class CompanyAPIClient {
-    private static String API_BASE_URL = "http://192.168.0.17:8080/grupo5_reto2_server/webresources/company/";
+    private static String API_BASE_URL = "http://192.168.20.88:8080/grupo5_reto2_server-development_SERVER_Fran/webresources/company/";
     /**
      * This method convert the XML
      * @return a CompanyInterface

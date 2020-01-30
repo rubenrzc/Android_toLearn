@@ -66,6 +66,12 @@ public interface UserInterface {
      */
     @DELETE("{id}")
     public Call <Void> remove(@Path("id")Integer id);
+    /**
+     *
+     * @return
+     */
+    @GET("getPublicKey/")
+    public Call<String> getPublicKey();
     
      
     

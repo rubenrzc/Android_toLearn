@@ -5,6 +5,8 @@
  */
 package com.example.tolearn.pojos;
 
+import com.example.tolearn.utilities.Convertors;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -37,7 +39,7 @@ public class Document implements Serializable {
     //@Element(name="visibility")
     private Boolean visibility;
     //@ElementList(name = "documentContent", inline = true)
-    private Byte[] documentContent;
+    private String documentContent;
     //@Element(name="status")
     private DocumentStatus status;
 
@@ -126,13 +128,15 @@ public class Document implements Serializable {
     /**
      * @return documentContent
      */
-    public Byte[] getDocumentContent() {
+    public byte[] getDocumentContent() {
+        Convertors con = new Convertors();
+        byte[] documentContent = con.hexStringToByteArray(this.documentContent);
         return documentContent;
     }
     /**
      * @param documentContent
      */
-    public void setDocumentContent(Byte[] documentContent) {
+    public void setDocumentContent(String documentContent) {
         this.documentContent = documentContent;
     }
     /**

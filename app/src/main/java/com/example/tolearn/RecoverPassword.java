@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -92,19 +93,20 @@ public class RecoverPassword extends AppCompatActivity {
              */
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.code() == 200){
-                    Toast.makeText(getApplicationContext(),"Recover password has been send to :"+email+" ",Toast.LENGTH_LONG).show();
-                    stopAnimation();
-                } else if (response.code() == 204){
-                    etEmail.setError("That email does not exist ");
-                    stopAnimation();
-                } else if (response.code() == 400){
-                    Toast.makeText(getApplicationContext(),"Email not found",Toast.LENGTH_LONG).show();
-                } else if (response.code() == 401){
-                    etEmail.setError("Not authoriced");
-                    stopAnimation();
 
-                }
+                    if (response.code() == 200){
+                        Toast.makeText(getApplicationContext(),"Recover password has been send to :"+email+" ",Toast.LENGTH_LONG).show();
+                    } else if (response.code() == 204){
+                        etEmail.setError("That email does not exist ");
+                    } else if (response.code() == 400){
+                        Toast.makeText(getApplicationContext(),"Email not found",Toast.LENGTH_LONG).show();
+                    } else if (response.code() == 401){
+                        etEmail.setError("Not authoriced");
+                    }else if(response.code()==500){
+                        Toast.makeText(getApplicationContext(),"Error del server",Toast.LENGTH_LONG).show();
+                        Log.d("error","internal error");
+                    }
+                    stopAnimation();
             }
 
             /**
@@ -112,6 +114,7 @@ public class RecoverPassword extends AppCompatActivity {
              */
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("error"," "+t.getMessage());
                 stopAnimation();
         }
         });

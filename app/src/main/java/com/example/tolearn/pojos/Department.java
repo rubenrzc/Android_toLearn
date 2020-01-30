@@ -5,12 +5,11 @@
  */
 package com.example.tolearn.pojos;
 
-import org.simpleframework.xml.Element;
+
+
 import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -38,6 +37,7 @@ public class Department implements Serializable {
     /**
      * Areas collection
      */
+
     //@ElementList(name = "areas", inline = true)
     private Set<Area> areas;
 
@@ -82,7 +82,7 @@ public class Department implements Serializable {
      * @return the areas
      */
 
-    public Collection<Area> getAreas() {
+    public Set<Area> getAreas() {
         return areas;
     }
 

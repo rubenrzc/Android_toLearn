@@ -26,8 +26,8 @@ import com.example.tolearn.pojos.Area;
 import com.example.tolearn.pojos.plural.Areas;
 import com.example.tolearn.retrofit.AreaAPIClient;
 
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -66,15 +66,46 @@ public class AreaAdminFragment extends Fragment {
             }
         });
 
-        area = llenarListAreas();
-        listArea = new ArrayList<Area>();
-
-
-
-
-
+        llenarRecyclerArea();
 
         return root;
+    }
+
+    private void llenarRecyclerArea() {
+
+        AreaInterface areaInterface = AreaAPIClient.getClient();
+
+        Call<Areas>areas = areaInterface.FindAllArea();
+        areas.enqueue(new Callback<Areas>() {
+            @Override
+            public void onResponse(Call<Areas> call, Response<Areas> response) {
+                if(response.isSuccessful()){
+                    if(response.code()==200){
+                        Set<Area> areas = new HashSet<>();
+                        for(Area a : response.body().getAreas()){
+                            areas.add(a);
+                        }
+                        Log.d("msg", "tamaño: "+areas.size());
+                        Area[] area = new Area[areas.size()];
+                        areas.toArray(area);
+                        ArrayList<Area> listArea = new ArrayList<Area>(Arrays.asList(area));
+
+                        layoutManager = new LinearLayoutManager(getContext());
+                        recycler = (RecyclerView) root.findViewById(R.id.reyclerArea);
+                        recycler.setHasFixedSize(true);
+                        recycler.setLayoutManager(layoutManager);
+                        areaAdapter = new AreaAdapter(listArea);
+                        recycler.setAdapter(areaAdapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Areas> call, Throwable t) {
+                Log.d("msg","Estamos en el on failure  "+t.getMessage());
+            }
+        });
+
     }
 
     private void addNewArea() {
@@ -104,14 +135,12 @@ public class AreaAdminFragment extends Fragment {
                                 Toast.makeText(getContext(),"Area created",Toast.LENGTH_LONG).show();
                             }
                         }
-
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
 
                         }
                     });
                 }
-
             }
         });
         dialogo1.setNegativeButton(R.string.btnDiscard, new DialogInterface.OnClickListener() {
@@ -121,53 +150,5 @@ public class AreaAdminFragment extends Fragment {
         });
         dialogo1.show();
     }
-
-    private Set<Area> llenarListAreas() {
-        AreaInterface areaInterface = AreaAPIClient.getClient();
-
-        Set<Area>listAreas = new HashSet<>();
-        Call<Areas> areas = areaInterface.FindAllArea();
-        areas.enqueue(new Callback<Areas>() {
-            @Override
-            public void onResponse(Call<Areas> call, Response<Areas> response) {
-                if (response.isSuccessful()){
-                    if(response.code()==200){
-                        listAreas(response.body());
-
-                        Log.d("msg","Estamos en el 200");
-                        layoutManager = new LinearLayoutManager(getContext());
-                        recycler = (RecyclerView) root.findViewById(R.id.reyclerArea);
-                        recycler.setHasFixedSize(true);
-                        recycler.setLayoutManager(layoutManager);
-                        areaAdapter = new AreaAdapter(area);
-                        recycler.setAdapter(areaAdapter);
-
-                        areaAdapter.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Navigation.findNavController(v).navigate(R.id.action_nav_areaAdmin_to_nav_areaProfile);
-                            }
-                        });
-
-                    }
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<Areas> call, Throwable t) {
-                Log.d("msg","Estamos en el on failure  "+t.getMessage());
-            }
-        });
-        return listAreas;
-    }
-
-    private void listAreas(Areas body) {
-        Set<Areas> areas = new HashSet<>();
-        for (Area a : body.getAreas()) {
-            areas.add(body);
-        }
-
-    }
-
 }
+

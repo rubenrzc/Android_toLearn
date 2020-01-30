@@ -36,6 +36,7 @@ import com.example.tolearn.pojos.Area;
 import com.example.tolearn.pojos.User;
 import com.example.tolearn.retrofit.AreaAPIClient;
 import com.example.tolearn.retrofit.UserAPIClient;
+import com.example.tolearn.utilities.Encryptation;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Random;
@@ -195,7 +196,82 @@ public class ProfileFragment extends Fragment {
     }
 
     private void cambiarContrasenaAlertDialog() {
-        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getContext());
+
+        final AlertDialog alertDialog;
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        // Get the layout inflater
+        LayoutInflater inflater = getLayoutInflater();
+        // Inflar y establecer el layout para el dialogo
+        // Pasar nulo como vista principal porque va en el diseño del diálogo
+        View v = inflater.inflate(R.layout.dialog_change_pwd, null);
+        //builder.setView(inflater.inflate(R.layout.dialog_signin, null))
+        Button btnChangePwd = (Button)v.findViewById(R.id.btnChangePwd);
+        Button btnCancelChange = (Button)v.findViewById(R.id.btnCancelChange);
+        EditText etPwdChange = (EditText)v.findViewById(R.id.etPwdChange);
+        EditText etPwdConfirmChange = (EditText)v.findViewById(R.id.etPwdConfirmChange);
+
+        builder.setView(v);
+        alertDialog = builder.create();
+        // Add action buttons
+        btnChangePwd.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String pwd = etPwdChange.getText().toString();
+
+                        if(pwd.equals(etPwdConfirmChange.getText().toString())){
+
+                            Encryptation.getKey();
+                            String encryptedPassword = pwd;
+                            try {
+                                encryptedPassword = Encryptation.encrypt(encryptedPassword);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            User user = new User();
+                            user.setPassword(encryptedPassword);
+                            UserInterface userInterface = UserAPIClient.getClient();
+
+                            Call<Void>call=userInterface.edit(user);
+                            call.enqueue(new Callback<Void>() {
+                                //ProgressBar simpleProgressBar = (ProgressBar)root.findViewById(R.id.progressBar);
+
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.code()==204){
+                                        Log.d("mensaje","todo ok");
+                                        Toast.makeText(getContext(), "Password have been changed", Toast.LENGTH_LONG).show();
+                                    }if(response.code()==500){
+                                        Log.d("mensaje","estamos en el 500");
+                                        Toast.makeText(getContext(), "Internal server errotr", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) {
+                                    Log.d("error", "caused by: "+t.getMessage());
+
+                                }
+                            });
+
+                        }else{
+                            etPwdConfirmChange.setError("Password does not mach");
+                        }
+                    }
+                }
+        );
+        btnCancelChange.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                }
+        );
+        alertDialog.show();
+
+
+
+        /*AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getContext());
         dialogo1.setTitle(R.string.btnAddArea);
         dialogo1.setMessage(R.string.addArea);
         final EditText pwd = new EditText(getContext());
@@ -242,7 +318,7 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-        dialogo1.show();
+        dialogo1.show();*/
     }
 
     @Override

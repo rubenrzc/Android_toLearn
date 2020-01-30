@@ -50,6 +50,6 @@ public interface CompanyInterface {
     /**
      * @return Companies
      */
-    @GET
+    @GET(".")
     public Call<Companies> findAll();
 }

@@ -1,6 +1,7 @@
 package com.example.tolearn.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +70,7 @@ public class NewDocFragment extends Fragment {
         imgBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //addNewDocument();
+                addNewDocument();
             }
         });
 
@@ -85,6 +87,10 @@ public class NewDocFragment extends Fragment {
         return root;
     }
 
+    private void addNewDocument() {
+
+    }
+
     private void comprobarDatosDocumento() {
         if(etTittle.getText()==null){
             etTittle.setError("Not data found");
@@ -93,36 +99,9 @@ public class NewDocFragment extends Fragment {
         }
     }
 
-    private void generarNuevoDocumento() {
-        Byte[] doc;
-        newDoc = new Document();
-        newDoc.setName(etTittle.getText().toString());
-        newDoc.setDescription(multilineEtDesc.getText().toString());
-        if(rButtonVisible.isChecked()){
-            newDoc.setVisibility(true);
-        }else{
-            newDoc.setVisibility(false);
-        }
-        newDoc.setStatus(DocumentStatus.DISABLED);
-        doc = addNewDocument();
-        newDoc.setDocumentContent(doc);
 
-    }
 
-    private Byte[] addNewDocument() {
-        Byte[] doc = new Byte[0];
-        //TODO
 
-        return doc;
-    }
-
-    private void llenarSpinnerArea() {//TODO
-
-        /*List<String>listSpinner = Arrays.asList("item1","item2");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext()
-                ,android.R.layout.simple_spinner_item,listSpinner);
-        spinnerArea.setAdapter(adapter);*/
-    }
 
 
 

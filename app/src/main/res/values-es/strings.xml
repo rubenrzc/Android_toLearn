@@ -33,6 +33,8 @@
     <string name="tvCompProf">Compañia de usuario</string>
     <string name="btnChangePwd">Clique aqui para cambiar contraseña</string>
     <string name="errorChangePwd">No coinciden las contraseñas</string>
+    <string name="Repeatpwd">Confirmar contraseña</string>
+    <string name="Changepwd">Contraseña</string>
 
     <!-- New Doc -->
     <string name="etTittle">Titulo</string>
@@ -58,19 +60,19 @@
     <string name="areYouSure">Desea cancelar la operacion</string>
     <string name="yes">Si deseo cancelar la operacion</string>
     <string name="no">No</string>
-    <string name="delete">¿?</string>
-    <string name="deleted">Department have been deleted</string>
+    <string name="delete">Borrar</string>
+    <string name="deleted">El departamento ha sido borrado</string>
 
     <!-- area administrate -->
-    <string name="btnAddArea">New area</string>
+    <string name="btnAddArea">Nueva area</string>
     <string name="addArea">Introduce area name</string>
 
     <!-- area profile -->
-    <string name="etNameArea">Area name</string>
-    <string name="btnUploadArea">Upload area</string>
-    <string name="deletedArea">Area have been deleted</string>
+    <string name="etNameArea">Nombre de area</string>
+    <string name="btnUploadArea">Actualizar area</string>
+    <string name="deletedArea">El area ha sido eliminada</string>
 
     <!-- check users -->
-    <string name="btnAddUser">New user</string>
-    <string name="btnAceptAll">Verify all</string>
+    <string name="btnAddUser">nuevo usuario</string>
+    <string name="btnAceptAll">Verificar todo</string>
 </resources>

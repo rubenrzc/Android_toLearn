@@ -7,6 +7,8 @@ package com.example.tolearn.pojos;
 
 import android.text.Editable;
 
+import com.example.tolearn.utilities.Convertors;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementArray;
 import org.simpleframework.xml.ElementList;
@@ -41,7 +43,7 @@ public class User implements Serializable {
     private String password;
     //@ElementList(name = "photo", inline = true)
     //@ElementArray(name = "profilePicture",required = false)
-    private byte[] photo;
+    private String photo;
     //@Element(name="lastAcces")
     private String lastAccess;
     //@Element(name="lastPasswordChange")
@@ -245,13 +247,15 @@ public class User implements Serializable {
      * @return
      */
     public byte[] getPhoto() {
+        Convertors con = new Convertors();
+        byte[] photo = con.hexStringToByteArray(this.photo);
         return photo;
     }
 
     /**
      * @param photo
      */
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 

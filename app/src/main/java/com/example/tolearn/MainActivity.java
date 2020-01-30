@@ -26,6 +26,7 @@ import com.example.tolearn.pojos.User;
 import com.example.tolearn.retrofit.UserAPIClient;
 import com.example.tolearn.sqlite.ConexionSQLiteHelper;
 import com.example.tolearn.sqlite.LocalUser;
+import com.example.tolearn.utilities.Encryptation;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -145,20 +146,31 @@ public class MainActivity extends AppCompatActivity {
              * the user on the aplication
              */
             private void checkLoginData() {
-                final String pwd ;
+                String pwd ;
                 String loginName;
 
+                Encryptation.getKey();
                 loginName = etUsername.getText().toString();
                 pwd = etPwd.getText().toString();
 
                 UserInterface userInterface = UserAPIClient.getClient();
 
-                Call<User> call = (Call<User>) userInterface.login(loginName, pwd);
+                Encryptation.getKey();
+                loginName = etUsername.getText().toString();
+                String encryptedPassword=etPwd.getText().toString().trim();
+                try {
+                    encryptedPassword = Encryptation.encrypt(encryptedPassword);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Call<User> call = (Call<User>) userInterface.login(loginName, encryptedPassword);
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         Log.d("TRap",response.code()+" Adrian chico guapo");
                         if (response.code() == 200){
+                            User auxUser = new User();
+
                             registrarUserEnSQLite();
                             Animation animation= AnimationUtils.loadAnimation(MainActivity.this, R.anim.right_out);
                             btnLogIn.startAnimation(animation);
@@ -175,14 +187,16 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                         if (response.code() == 401){
-                            etPwd.setError("User not found");
+                            etUsername.setError("User not found");
+                            etUsername.requestFocus();
                             sonidoError();
-                            //stopAnimation();
+                            stopAnimation();
                         }
                         if (response.code() == 404){
-                            etPwd.setError("User not found");
+                            etUsername.setError("User not found");
+                            etUsername.requestFocus();
                             sonidoError();
-                            //stopAnimation();
+                            stopAnimation();
                         }
 
                     }
@@ -192,7 +206,6 @@ public class MainActivity extends AppCompatActivity {
 
                         Log.d("TRap","TRapatoni "+t.getMessage());
                         Toast.makeText(MainActivity.this, "MALAMENTE TRaP TRAP", Toast.LENGTH_SHORT).show();
-                        //stopAnimation();
                     }
                 });
             }
@@ -253,8 +266,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    /*private void stopAnimation() {
-        final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingRecover);
+    private void stopAnimation() {
+        final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingMain);
         animationView.setVisibility(View.GONE);
-    }*/
+    }
 }

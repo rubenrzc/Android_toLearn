@@ -150,10 +150,10 @@
         android:src="@drawable/ic_create_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCompProf"
-        app:layout_constraintVertical_bias="0.371" />
+        app:layout_constraintVertical_bias="0.624" />
 
     <ImageButton
         android:id="@+id/imgBtPhoto"
@@ -169,15 +169,15 @@
 
     <Button
         android:id="@+id/btnChangePwd"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnChangePwd"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imgBtEdit"
-        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintHorizontal_bias="0.794"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCompany"
-        app:layout_constraintVertical_bias="0.352" />
+        app:layout_constraintVertical_bias="0.235" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

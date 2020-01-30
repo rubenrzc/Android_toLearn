@@ -24,8 +24,8 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolderDato
 
     private View.OnClickListener listener;
 
-    public AreaAdapter(Set<Area> listAreas) {
-        this.listAreas.addAll(listAreas);
+    public AreaAdapter(ArrayList<Area> listAreas) {
+        this.listAreas = listAreas;
     }
 
     @NonNull

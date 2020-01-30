@@ -30,6 +30,8 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.View
     public ViewHolderDocuments onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_document,null,false);
 
+        view.setOnClickListener(this);
+
         return new ViewHolderDocuments(view);
     }
 

@@ -1,4 +1,5 @@
 <resources>
+
     <!-- Main -->
 
     <string name="switchRemember">Remember me</string>
@@ -33,6 +34,8 @@
     <string name="tvCompProf">User company </string>
     <string name="btnChangePwd">Click here to change password</string>
     <string name="errorChangePwd">Password does not mach</string>
+    <string name="Repeatpwd">Confirm password</string>
+    <string name="Changepwd">Password</string>
 
     <!-- New Doc -->
     <string name="etTittle">Tittle</string>

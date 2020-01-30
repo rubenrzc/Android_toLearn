@@ -14,7 +14,6 @@ import java.util.Set;
 public class Areas {
     @ElementList(name = "area", inline = true)
     private Set<Area> areas;
-
     /**
      * @return areas
      */
