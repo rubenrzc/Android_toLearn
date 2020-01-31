@@ -130,6 +130,13 @@ public class ProfileFragment extends Fragment {
         etEmail.setText(user.getEmail());
         etFullName.setText(user.getFullname());
 
+        if(!user.getPhoto().toString().isEmpty()){
+            Bitmap bmp = BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length);
+            CircleImageUser.setImageBitmap(bmp);
+        }
+
+
+
         if(user.getCompany().getName().toString().equals(null)){
             tvCompProf.setText("ROOT_USER");
         }else{
@@ -191,8 +198,6 @@ public class ProfileFragment extends Fragment {
                         //Update call
                         Call<Void>call=userInterface.edit(user);
                         call.enqueue(new Callback<Void>() {
-                            //ProgressBar simpleProgressBar = (ProgressBar)root.findViewById(R.id.progressBar);
-
                             /**
                              * onResponse method of the call
                              * @param call
@@ -331,12 +336,12 @@ public class ProfileFragment extends Fragment {
         Bitmap bitmap = (Bitmap)data.getExtras().get("data");
         CircleImageUser.setImageBitmap(bitmap);
 
-        /*Bitmap bmp = intent.getExtras().get("data");
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-        bmp.recycle();*/
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] imagen = stream.toByteArray();
+        String imagenString = new String(imagen);
 
+        user.setPhoto(imagenString);
     }
 
 }

@@ -13,34 +13,7 @@
 
         <LinearLayout
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
-
-            <EditText
-                android:id="@+id/etSearchDoc"
-                android:layout_width="315dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/search"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/imgBtSearch"
-                android:layout_width="86dp"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:src="@drawable/ic_search_black_24dp"
-                app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/etSearchDoc"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.452" />
-
-        </LinearLayout>
+            android:layout_width="match_parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

@@ -12,6 +12,7 @@
     <string name="close">Cerrar</string>
     <string name="pwdNull">Introduce password</string>
     <string name="usrNull">Introduce username</string>
+    <string name="emailError">Introduce email</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -28,6 +29,7 @@
     <string name="toast1">El documento ha sido descargado</string>
     <string name="toast2">Documento no encontrado</string>
     <string name="searchError">Inserte un area</string>
+    <string name="documentDownloaded">Documento descargado con exito</string>
 
     <!-- Profile -->
     <string name="btnNewImage">Cambiar imagen</string>
@@ -52,6 +54,8 @@
     <string name="btnDiscard">Descartar</string>
     <string name="visible">Visible</string>
     <string name="area">Seleccion area</string>
+    <string name="titleError">Introduce titulo</string>
+    <string name="descError">Introduce descripcion</string>
 
     <!--  exit fragment -->
     <string name="dialog1Title">Aviso</string>

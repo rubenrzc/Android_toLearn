@@ -13,6 +13,7 @@
     <string name="close">Close</string>pwdNull
     <string name="pwdNull">Introduce password</string>
     <string name="usrNull">Introduce username</string>
+    <string name="emailError">Introduce email</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -29,6 +30,7 @@
     <string name="toast1">Document have been downloaded</string>
     <string name="toast2">Document not found</string>
     <string name="searchError">Need to insert Area</string>
+    <string name="documentDownloaded">Document downloaded</string>
 
 
     <!-- Profile -->
@@ -54,6 +56,8 @@
     <string name="btnDiscard">Discard</string>
     <string name="visible">Visible</string>
     <string name="area">Select area</string>
+    <string name="titleError">Introduce title</string>
+    <string name="descError">Introduce description</string>
 
     <!--  exit fragment -->
     <string name="dialog1Title">Warning</string>
@@ -100,4 +104,5 @@
     <!-- check users -->
     <string name="btnAddUser">New user</string>
     <string name="btnAceptAll">Verify all</string>
+
 </resources>

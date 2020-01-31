@@ -52,11 +52,14 @@ public class RecoverPassword extends AppCompatActivity {
         btnRecover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingRecover);
-                animationView.setVisibility(View.VISIBLE);
-                animationView.playAnimation();
-
-                checkEmailExist();
+                if(etEmail.getText().toString().isEmpty()){
+                    etEmail.setError(getText(R.string.emailError));
+                }else{
+                    final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingRecover);
+                    animationView.setVisibility(View.VISIBLE);
+                    animationView.playAnimation();
+                    checkEmailExist();
+                }
             }
         });
         /**
@@ -97,7 +100,7 @@ public class RecoverPassword extends AppCompatActivity {
                     if (response.code() == 200){
                         Toast.makeText(getApplicationContext(),"Recover password has been send to :"+email+" ",Toast.LENGTH_LONG).show();
                     } else if (response.code() == 204){
-                        etEmail.setError("That email does not exist ");
+                        Toast.makeText(getApplicationContext(),"Recover password has been send to :"+email+" ",Toast.LENGTH_LONG).show();
                     } else if (response.code() == 400){
                         Toast.makeText(getApplicationContext(),"Email not found",Toast.LENGTH_LONG).show();
                     } else if (response.code() == 401){

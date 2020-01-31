@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,15 +24,20 @@ import android.widget.Toast;
 
 import com.example.tolearn.R;
 import com.example.tolearn.adapters.DocumentsAdapter;
+import com.example.tolearn.interfaces.AreaInterface;
 import com.example.tolearn.interfaces.DocumentInterface;
 import com.example.tolearn.pojos.Document;
 import com.example.tolearn.pojos.plural.Documents;
+import com.example.tolearn.retrofit.AreaAPIClient;
 import com.example.tolearn.retrofit.DocumentAPIClient;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -49,8 +55,7 @@ import retrofit2.Response;
 public class PdfFragment extends Fragment {
 
 
-    private ImageButton imgBtSearch;
-    private EditText etSearchDoc;
+
     private RecyclerView recycler;
     private DocumentsAdapter documentdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -73,22 +78,7 @@ public class PdfFragment extends Fragment {
                              Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_pdf, container, false);
 
-        imgBtSearch = (ImageButton)root.findViewById(R.id.imgBtSearch);
-        etSearchDoc = (EditText) root.findViewById(R.id.etSearchDoc);
-
         cargarListaDocumentos();
-        imgBtSearch.setOnClickListener(new View.OnClickListener() {
-            /**
-             * This method search documents by Area
-             * @param v
-             */
-            @Override
-            public void onClick(View v) {
-                if(etSearchDoc.getText()==null){
-                    etSearchDoc.setError(""+R.string.searchError);
-                }
-            }
-        });
         return root;
     }
 
@@ -136,6 +126,32 @@ public class PdfFragment extends Fragment {
                              * document to the device
                              */
                             public void onClick(View v) {
+
+                                File dir = Environment.getExternalStorageDirectory();
+                                File assist = new File("/mnt/sdcard/"+listDocs.get(recycler.getChildAdapterPosition(v)).getName()+".pdf");
+                                try {
+                                    InputStream fis = new FileInputStream(assist);
+
+                                    long length = assist.length();
+                                    if (length > Integer.MAX_VALUE) {
+                                        Log.e("MainActivity", "cannnottt   readddd");
+                                    }
+                                    byte[] bytes = listDocs.get(recycler.getChildAdapterPosition(v)).getDocumentContent();
+                                    int offset = 0;
+                                    int numRead = 0;
+                                    while (offset < bytes.length && (numRead = fis.read(bytes, offset, bytes.length - offset)) >= 0) {
+                                        offset += numRead;
+                                    }
+
+                                    File data = new File(dir, listDocs.get(recycler.getChildAdapterPosition(v)).getName()+".pdf");
+                                    OutputStream op = new FileOutputStream(data);
+                                    op.write(bytes);
+                                    Toast.makeText(getContext(),R.string.documentDownloaded,Toast.LENGTH_LONG).show();
+                                } catch (Exception ex) {
+                                    Log.e("error", "caused by " + ex.getMessage());
+                                }
+
+                                /*
                                 Toast.makeText(getContext(),"prueba",Toast.LENGTH_LONG).show();
                                 try {
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -164,7 +180,7 @@ public class PdfFragment extends Fragment {
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                     Log.d("error","caused by: "+e.getMessage());
-                                }
+                                }*/
                             }
                         });
                         Log.d("msg","Estamos en el 200");

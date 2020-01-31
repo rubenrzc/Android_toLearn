@@ -54,9 +54,9 @@ public class MenuActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
-        toggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
+        //toggle.syncState();
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle = getIntent().getExtras();
         user = (User) bundle.get("user");
