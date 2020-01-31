@@ -24,6 +24,11 @@
     <!-- Fragments -->
     <!-- PDf -->
     <string name="search">Search </string>
+    <string name="toast1">Document have been downloaded</string>
+    <string name="toast2">Document not found</string>
+    <string name="searchError">Need to insert Area</string>
+
+
     <!-- Profile -->
     <string name="btnNewImage">change profile picture</string>
     <string name="tvUsernameProfile">Username: </string>
@@ -36,6 +41,9 @@
     <string name="errorChangePwd">Password does not mach</string>
     <string name="Repeatpwd">Confirm password</string>
     <string name="Changepwd">Password</string>
+    <string name="userUpdated">User have been updated</string>
+    <string name="internalError">Server internal error</string>
+    <string name="pwdChanged">Password have been changed</string>
 
     <!-- New Doc -->
     <string name="etTittle">Tittle</string>
@@ -44,6 +52,13 @@
     <string name="btnDiscard">Discard</string>
     <string name="visible">Visible</string>
     <string name="area">Select area</string>
+
+    <!--  exit fragment -->
+    <string name="dialog1Title">Warning</string>
+    <string name="dialog1Question">Are you sure you want to exit?</string>
+    <string name="btnpositive">Yes, I am sure</string>
+    <string name="btnnegative">Cancel</string>
+
 
     <!-- departmenr admin -->
     <string name="DepTitle">Department administration</string>
@@ -67,6 +82,8 @@
     <!-- area administrate -->
     <string name="btnAddArea">New area</string>
     <string name="addArea">Introduce area name</string>
+    <string name="areaCreated">Area have been created</string>
+    <string name="introduceName">Need to introduce a name</string>
 
     <!-- area profile -->
     <string name="etNameArea">Area name</string>

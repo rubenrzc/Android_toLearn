@@ -42,7 +42,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * A simple {@link Fragment} subclass.
+ * @Author Andoni
+ * This fragment get all documents and
+ * it show them on a RecyclerView
  */
 public class PdfFragment extends Fragment {
 
@@ -59,7 +61,13 @@ public class PdfFragment extends Fragment {
         // Required empty public constructor
     }
 
-
+    /**
+     * onCreate method of fragment_pdf controller
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,35 +78,50 @@ public class PdfFragment extends Fragment {
 
         cargarListaDocumentos();
         imgBtSearch.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This method search documents by Area
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 if(etSearchDoc.getText()==null){
-                    etSearchDoc.setError("Introduce document name");
+                    etSearchDoc.setError(""+R.string.searchError);
                 }
             }
         });
-
         return root;
     }
 
+    /**
+     * This method take care of gettin all the documents
+     * and to show them on the RecyclerView
+     */
     private void cargarListaDocumentos() {
 
         DocumentInterface documentInterface = DocumentAPIClient.getClient();
+        //Retrofit call
         Call<Documents>documents = documentInterface.findAll();
         documents.enqueue(new Callback<Documents>() {
             @Override
+            /**
+             * onResponse evnet
+             */
             public void onResponse(Call<Documents> call, Response<Documents> response) {
                 if(response.isSuccessful()){
                     if(response.code()==200){
                         Set<Document> doc = new HashSet<Document>();
+                        //Saving the response.body()
                         for (Document d : response.body().getDocuments()) {
                             doc.add(d);
                         }
                         Log.d("msg","tamaño  "+ doc.size());
 
                         Document[] docs = new Document[doc.size()];
+                        //Converting from Set<> to Array
                         doc.toArray(docs);
+                        //Convertinh from Array to ArrayList
                         ArrayList<Document> listDocs = new ArrayList<Document>(Arrays.asList(docs));
+                        //RecyclerView configuration
                         layoutManager = new LinearLayoutManager(getContext());
                         recycler = (RecyclerView) root.findViewById(R.id.recyclerView);
                         recycler.setHasFixedSize(true);
@@ -108,6 +131,10 @@ public class PdfFragment extends Fragment {
 
                         documentdapter.setOnClickListener(new View.OnClickListener() {
                             @Override
+                            /**
+                             * Documetn onClick event, it try to download the
+                             * document to the device
+                             */
                             public void onClick(View v) {
                                 Toast.makeText(getContext(),"prueba",Toast.LENGTH_LONG).show();
                                 try {
@@ -129,36 +156,31 @@ public class PdfFragment extends Fragment {
                                     }
                                     FileOutputStream stream = new FileOutputStream(path);
                                     stream.write(listDocs.get(recycler.getChildAdapterPosition(v)).getDocumentContent());
-                                    Toast.makeText(getContext(),"Documento descargado con exito",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(),R.string.toast1,Toast.LENGTH_LONG).show();
                                 } catch (FileNotFoundException e1) {
                                     e1.printStackTrace();
-                                    Toast.makeText(getContext(),"No contiene ningun documento",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(),R.string.toast1,Toast.LENGTH_LONG).show();
                                     Log.d("error","caused by: "+e1.getMessage());
                                 } catch (IOException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getContext(),"ioException",Toast.LENGTH_LONG).show();
                                     Log.d("error","caused by: "+e.getMessage());
                                 }
                             }
                         });
-
                         Log.d("msg","Estamos en el 200");
-
                     }
                 }
             }
+
+            /**
+             * onFailure event of the call
+             * @param call
+             * @param t
+             */
             @Override
             public void onFailure(Call<Documents> call, Throwable t) {
                 Log.d("msg","Estamos en el on failure  "+t.getMessage());
             }
         });
-
-
     }
-
-    private void listDocuments(Documents documents) {
-
-
-    }
-
 }

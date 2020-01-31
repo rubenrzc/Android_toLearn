@@ -48,7 +48,9 @@ import retrofit2.Response;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * @Author Ruben
+ * This fragment contains user data
+ * and it takes care of updating
  */
 public class ProfileFragment extends Fragment {
 
@@ -72,6 +74,13 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /**
+     * onCreate method of the ProfileFragment
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -91,6 +100,7 @@ public class ProfileFragment extends Fragment {
         tvCompany = (TextView) root.findViewById(R.id.tvCompany);
         btnChangePwd = (Button) root.findViewById(R.id.btnChangePwd);
 
+        //Animation
         Animation animation= AnimationUtils.loadAnimation(getContext(), R.anim.left_in);
         ivHeader.startAnimation(animation);
         etUsernameProf.startAnimation(animation);
@@ -106,26 +116,26 @@ public class ProfileFragment extends Fragment {
         tvCompany.startAnimation(animation);
         btnChangePwd.startAnimation(animation);
 
-
         etUsernameProf.setEnabled(false);
         etEmail.setEnabled(false);
         etFullName.setEnabled(false);
         imgBtPhoto.setEnabled(false);
 
+        //Hidding ImageButton
         imgBtPhoto.setVisibility(View.GONE);
-
+        //Getting the user
         user=MenuActivity.getUser();
 
         etUsernameProf.setText(user.getLogin());
         etEmail.setText(user.getEmail());
         etFullName.setText(user.getFullname());
         tvCompProf.setText(user.getCompany().getName());
-        /*if(user.getPhoto().toString()==null){
-            Bitmap bmp = BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length);
-            CircleImageUser.setImageBitmap(bmp);
-        }*/
 
         btnChangePwd.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This onClick throws an alertDialog
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 cambiarContrasenaAlertDialog();
@@ -133,8 +143,13 @@ public class ProfileFragment extends Fragment {
         });
 
         imgBtEdit.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This method takes care of updating the user
+             * @param v
+             */
             @Override
             public void onClick(View v) {
+
                 imgBtEdit.setImageResource(R.drawable.ic_save_black_24dp);
 
                 imgBtPhoto.setEnabled(true);
@@ -147,6 +162,9 @@ public class ProfileFragment extends Fragment {
 
                 imgBtPhoto.setOnClickListener(new View.OnClickListener() {
                     @Override
+                    /**
+                     * Opening the device camera
+                     */
                     public void onClick(View v) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         startActivityForResult(intent,0);
@@ -154,21 +172,28 @@ public class ProfileFragment extends Fragment {
                 });
 
                 imgBtEdit.setOnClickListener(new View.OnClickListener(){
+                    /**
+                     * Updating the user
+                     * @param view
+                     */
                     @Override
                     public void onClick(View view){
-
-
 
                         user.setLogin(etUsernameProf.getText().toString());
                         user.setEmail(etEmail.getText().toString());
                         user.setFullname(etFullName.getText().toString());
 
                         UserInterface userInterface = UserAPIClient.getClient();
-
+                        //Update call
                         Call<Void>call=userInterface.edit(user);
                         call.enqueue(new Callback<Void>() {
                             //ProgressBar simpleProgressBar = (ProgressBar)root.findViewById(R.id.progressBar);
 
+                            /**
+                             * onResponse method of the call
+                             * @param call
+                             * @param response
+                             */
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if(response.code()==204){
@@ -177,13 +202,17 @@ public class ProfileFragment extends Fragment {
                                     //simpleProgressBar.setVisibility(View.VISIBLE);
                                     //simpleProgressBar.setProgress(1);
 
-                                    Toast.makeText(getContext(), "Usuario modificado correctamente", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), R.string.userUpdated, Toast.LENGTH_LONG).show();
                                 }
                             }
 
+                            /**
+                             * onFailure method of the call
+                             * @param call
+                             * @param t
+                             */
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
-
                             }
                         });
                     }
@@ -195,6 +224,10 @@ public class ProfileFragment extends Fragment {
         return root;
     }
 
+    /**
+     * This method launch a custom alertdialog
+     * to change the user password
+     */
     private void cambiarContrasenaAlertDialog() {
 
         final AlertDialog alertDialog;
@@ -237,22 +270,29 @@ public class ProfileFragment extends Fragment {
                                 //ProgressBar simpleProgressBar = (ProgressBar)root.findViewById(R.id.progressBar);
 
                                 @Override
+                                /**
+                                 * On response method
+                                 */
                                 public void onResponse(Call<Void> call, Response<Void> response) {
                                     if(response.code()==204){
                                         Log.d("mensaje","todo ok");
-                                        Toast.makeText(getContext(), "Password have been changed", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getContext(), R.string.pwdChanged, Toast.LENGTH_LONG).show();
                                     }if(response.code()==500){
                                         Log.d("mensaje","estamos en el 500");
-                                        Toast.makeText(getContext(), "Internal server errotr", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getContext(), R.string.internalError, Toast.LENGTH_LONG).show();
                                     }
                                 }
+
+                                /**
+                                 * onFailure method
+                                 * @param call
+                                 * @param t
+                                 */
                                 @Override
                                 public void onFailure(Call<Void> call, Throwable t) {
                                     Log.d("error", "caused by: "+t.getMessage());
-
                                 }
                             });
-
                         }else{
                             etPwdConfirmChange.setError("Password does not mach");
                         }
@@ -261,6 +301,10 @@ public class ProfileFragment extends Fragment {
         );
         btnCancelChange.setOnClickListener(
                 new View.OnClickListener() {
+                    /**
+                     * negative button
+                     * @param v
+                     */
                     @Override
                     public void onClick(View v) {
                         alertDialog.dismiss();
@@ -270,6 +314,13 @@ public class ProfileFragment extends Fragment {
         alertDialog.show();
     }
 
+    /**
+     * This method takes care of save the
+     * MediaStore.ACTION_IMAGE_CAPTURE
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

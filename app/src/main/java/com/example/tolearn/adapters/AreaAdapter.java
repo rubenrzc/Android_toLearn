@@ -15,12 +15,14 @@ import com.example.tolearn.pojos.Area;
 import java.util.ArrayList;
 import java.util.Set;
 
+/**
+ * @Author Andoni
+ * Area recyclerView adapter
+ */
 public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolderDatos>
         implements View.OnClickListener{
 
     ArrayList<Area>listAreas;
-
-
 
     private View.OnClickListener listener;
 
@@ -28,6 +30,12 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolderDato
         this.listAreas = listAreas;
     }
 
+    /**
+     * AreaAdapter viewHolder
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public AreaAdapter.ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,18 +48,36 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolderDato
         return new AreaAdapter.ViewHolderDatos(view);
     }
 
+    /**
+     * Load the data into the textViews
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull AreaAdapter.ViewHolderDatos holder, int position) {
         holder.asignarDatos(listAreas.get(position));
     }
 
+    /**
+     * @return position
+     */
     @Override
     public int getItemCount() {
         return listAreas.size();
     }
+
+    /**
+     * This method is to make the recycles an
+     * onClickListener
+     * @param listener
+     */
     public void setOnClickListener(View.OnClickListener listener){
         this.listener = listener;
     }
+
+    /**
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         if(listener!=null){
@@ -59,13 +85,23 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolderDato
         }
     }
 
+    /**
+     * ViewHolderDatos class
+     */
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
         TextView idAreaName;
+
+        /**
+         * @param itemView
+         */
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
             idAreaName = (TextView)itemView.findViewById(R.id.idAreaName);
         }
 
+        /**
+         * @param area
+         */
         public void asignarDatos(Area area) {
             idAreaName.setText(area.getName());
         }

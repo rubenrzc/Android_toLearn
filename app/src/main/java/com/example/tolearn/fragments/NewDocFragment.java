@@ -25,7 +25,11 @@ import com.example.tolearn.pojos.Document;
 import com.example.tolearn.pojos.DocumentStatus;
 
 /**
- * A simple {@link Fragment} subclass.
+ * @Author Andoni
+ * this fragment takes care of adding
+ * a new document
+ *
+ * not finished yet
  */
 public class NewDocFragment extends Fragment {
 
@@ -36,7 +40,6 @@ public class NewDocFragment extends Fragment {
     private Button btnDiscard;
     private RadioButton rButtonVisible;
     private Spinner spinnerArea;
-
     private Document newDoc;
 
 
@@ -45,13 +48,19 @@ public class NewDocFragment extends Fragment {
         // Required empty public constructor
     }
 
-
+    /**
+     * onCreate method of newDocFragment
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View root= inflater.inflate(R.layout.fragment_new_doc, container, false);
-
+        //Upload animation
         final LottieAnimationView animationView = (LottieAnimationView)root.findViewById(R.id.animationLoadingNewDoc);
         animationView.setVisibility(View.GONE);
 
@@ -68,6 +77,10 @@ public class NewDocFragment extends Fragment {
 
 
         imgBtnAdd.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This onClick call addNewDocument() method
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 addNewDocument();
@@ -76,7 +89,11 @@ public class NewDocFragment extends Fragment {
 
         bntUpload.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * This onClick add a new document
+             */
             public void onClick(View v) {
+                //Upload animation
                 final LottieAnimationView animationView = (LottieAnimationView)root.findViewById(R.id.animationLoadingNewDoc);
                 animationView.setVisibility(View.VISIBLE);
                 animationView.playAnimation();
@@ -87,16 +104,17 @@ public class NewDocFragment extends Fragment {
         return root;
     }
 
+    /**
+     * Not implementet yet
+     */
     private void addNewDocument() {
 
     }
 
+    /**
+     *  Not implementet yet
+     */
     private void comprobarDatosDocumento() {
-        if(etTittle.getText()==null){
-            etTittle.setError("Not data found");
-        }if(multilineEtDesc.getText()==null){
-            multilineEtDesc.setError("Not data found");
-        }
     }
 
 

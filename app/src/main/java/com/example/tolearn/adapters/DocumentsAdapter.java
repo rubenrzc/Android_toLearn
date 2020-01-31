@@ -16,6 +16,10 @@ import com.example.tolearn.pojos.plural.Documents;
 import java.util.ArrayList;
 import java.util.Set;
 
+/**
+ * @Author Ruben
+ * Document Recycler view adapter
+ */
 public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.ViewHolderDocuments>
         implements View.OnClickListener{
 
@@ -26,6 +30,12 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.View
         this.listaDocumentos=listaDocumentos;
     }
 
+    /**
+     * DocumentAdapter ViewHolder
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public ViewHolderDocuments onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_document,null,false);
@@ -35,19 +45,37 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.View
         return new ViewHolderDocuments(view);
     }
 
+    /**
+     * Load the data into the textViews
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolderDocuments holder, int position) {
         holder.idTittle.setText(listaDocumentos.get(position).getName());
         holder.idDesc.setText(listaDocumentos.get(position).getDescription());
     }
 
+    /**
+     * @return position
+     */
     @Override
     public int getItemCount() {
         return listaDocumentos.size();
     }
+
+    /**
+     * This method is to make the recycles an
+     * onClickListener
+     * @param listener
+     */
     public void setOnClickListener(View.OnClickListener listener){
         this.listener = listener;
     }
+
+    /**
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         if(listener!=null){
@@ -55,11 +83,16 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.View
         }
     }
 
+    /**
+     * ViewHolderDocument class
+     */
     public class ViewHolderDocuments extends RecyclerView.ViewHolder {
 
         TextView idTittle,idDesc;
 
-
+        /**
+         * @param itemView
+         */
         public ViewHolderDocuments(@NonNull View itemView) {
             super(itemView);
             idTittle = (TextView)itemView.findViewById(R.id.idTittleDoc);

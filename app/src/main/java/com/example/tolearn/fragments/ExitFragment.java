@@ -23,7 +23,8 @@ import com.example.tolearn.MenuActivity;
 import com.example.tolearn.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * @Author Yeray
+ * fragment_exit fragment controller
  */
 public class ExitFragment extends Fragment {
 
@@ -34,33 +35,54 @@ public class ExitFragment extends Fragment {
         // Required empty public constructor
     }
 
-
+    /**
+     * onCreate method of exit_fragment
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         root= inflater.inflate(R.layout.fragment_exit, container, false);
 
+        //Lotie Animation
         final LottieAnimationView animationView = (LottieAnimationView)root.findViewById(R.id.exitAnimation);
         animationView.setVisibility(View.GONE);
 
+        //Custom alertDialog
         AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getContext());
-        dialogo1.setTitle("Importante");
-        dialogo1.setMessage("¿ Estas seguro que desea salir del programa ?");
+        dialogo1.setTitle(R.string.dialog1Title);
+        dialogo1.setMessage(R.string.dialog1Question);
         dialogo1.setCancelable(false);
-        dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+        dialogo1.setPositiveButton(R.string.btnpositive, new DialogInterface.OnClickListener() {
+            /**
+             * positive button onClick event
+             * @param dialogo1
+             * @param id
+             */
             public void onClick(DialogInterface dialogo1, int id) {
+                //Close dialog
                 dialogo1.dismiss();
+                //Start playing apagando.mp3
                 MediaPlayer ring = MediaPlayer.create(getContext(),R.raw.apagando);
                 ring.start();
+                //Exit animation
                 final LottieAnimationView animationView = (LottieAnimationView)root.findViewById(R.id.exitAnimation);
                 animationView.setVisibility(View.VISIBLE);
                 animationView.playAnimation();
 
             }
         });
-        dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        dialogo1.setNegativeButton(R.string.btnnegative, new DialogInterface.OnClickListener() {
+            /**
+             * negative button onClick event
+             * @param dialogo1
+             * @param id
+             */
             public void onClick(DialogInterface dialogo1, int id) {
-                //TODO
+                dialogo1.dismiss();
             }
         });
         dialogo1.show();
