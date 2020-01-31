@@ -189,6 +189,7 @@ public class AreaAdminFragment extends Fragment {
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if(response.code()==204){
                                 Toast.makeText(getContext(),R.string.areaCreated,Toast.LENGTH_LONG).show();
+                                llenarRecyclerArea();
                             }
                         }
 

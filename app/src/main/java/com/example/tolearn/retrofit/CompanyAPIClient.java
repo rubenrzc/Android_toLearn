@@ -12,7 +12,7 @@ import static retrofit2.converter.simplexml.SimpleXmlConverterFactory.create;
  * @Author Andoni
  */
 public class CompanyAPIClient {
-    private static String API_BASE_URL = "http://192.168.20.88:8080/grupo5_reto2_server-development_SERVER_Fran/webresources/company/";
+    private static String API_BASE_URL = "http://192.168.20.183:8080/grupo5_reto2_server-development_SERVER_Fran/webresources/company/";
     /**
      * This method convert the XML
      * @return a CompanyInterface

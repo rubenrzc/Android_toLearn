@@ -79,32 +79,109 @@ public class MainActivity extends AppCompatActivity {
         tvTittle.startAnimation(animation);
         switchRemember.startAnimation(animation);
 
-
-
-
         if(network == false){
             Toast.makeText(getApplicationContext(),"NOT INTERNETEN CONECTION",Toast.LENGTH_SHORT).show();
+            btnLogIn.setEnabled(false);
+            btnRecover.setEnabled(false);
         }else{
             Toast.makeText(getApplicationContext(),"INTERNETEN CONECTION",Toast.LENGTH_SHORT).show();
+            btnLogIn.setEnabled(true);
+            btnRecover.setEnabled(true);
         }
 
-
-        consultarUltimoUser();
-        menuLauncher();
-        recoverPassword();
-    }
-
-    /**
-     * this method launch the RecoverPassword activity
-     */
-    private void recoverPassword() {
         btnRecover.setOnClickListener(new View.OnClickListener() {
+            /**
+             * this method launch the RecoverPassword activity
+             */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), RecoverPassword.class);
                 startActivity(intent);
             }
         });
+        btnLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean esta = true;
+
+
+                esta = comprobarEditText();
+
+                if(esta==true){
+                    final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingMain);
+                    animationView.setVisibility(View.VISIBLE);
+                    animationView.playAnimation();
+                    animationView.loop(true);
+                    checkLoginData();
+                }
+            }
+        });
+    consultarUltimoUser();
+    }
+    /**
+     * This method takes care of login
+     * the user on the aplication
+     */
+    private void checkLoginData() {
+
+            String pwd ;
+            String loginName;
+
+            Encryptation.getKey();
+            loginName = etUsername.getText().toString();
+            pwd = etPwd.getText().toString();
+
+            UserInterface userInterface = UserAPIClient.getClient();
+
+            Encryptation.getKey();
+            loginName = etUsername.getText().toString();
+            String encryptedPassword=etPwd.getText().toString().trim();
+            try {
+                encryptedPassword = Encryptation.encrypt(encryptedPassword);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Call<User> call = (Call<User>) userInterface.login(loginName, encryptedPassword);
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    Log.d("TRap",response.code()+" Adrian chico guapo");
+                    if (response.code() == 200){
+                        User auxUser = new User();
+
+                        registrarUserEnSQLite();
+                        Animation animation= AnimationUtils.loadAnimation(MainActivity.this, R.anim.right_out);
+                        btnLogIn.startAnimation(animation);
+                        btnRecover.startAnimation(animation);
+                        etUsername.startAnimation(animation);
+                        etPwd.startAnimation(animation);
+                        tvPwd.startAnimation(animation);
+                        tvTittle.startAnimation(animation);
+                        switchRemember.startAnimation(animation);
+                        sonidoEncendido();
+                        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+                        intent.putExtra("user",response.body());
+                        startActivity(intent);
+
+                    }
+                    if (response.code() == 401){
+                        etUsername.setError("User not found");
+                        etUsername.requestFocus();
+                        sonidoError();
+                        stopAnimation();
+                    }
+                    if (response.code() == 404){
+                        etUsername.setError("User not found");
+                        etUsername.requestFocus();
+                        sonidoError();
+                        stopAnimation();
+                    }
+                }
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Log.d("TRap","TRapatoni "+t.getMessage());
+                }
+            });
     }
 
     /**
@@ -128,88 +205,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * this method launch the menu activity
+     * Verify if edit text have text
+     * @return boolean
      */
-    private void menuLauncher() {
-        btnLogIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final LottieAnimationView animationView = (LottieAnimationView)findViewById(R.id.animationLoadingMain);
-                animationView.setVisibility(View.VISIBLE);
-                animationView.playAnimation();
-                animationView.loop(true);
-                checkLoginData();
-            }
-
-            /**
-             * This method takes care of login
-             * the user on the aplication
-             */
-            private void checkLoginData() {
-                String pwd ;
-                String loginName;
-
-                Encryptation.getKey();
-                loginName = etUsername.getText().toString();
-                pwd = etPwd.getText().toString();
-
-                UserInterface userInterface = UserAPIClient.getClient();
-
-                Encryptation.getKey();
-                loginName = etUsername.getText().toString();
-                String encryptedPassword=etPwd.getText().toString().trim();
-                try {
-                    encryptedPassword = Encryptation.encrypt(encryptedPassword);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                Call<User> call = (Call<User>) userInterface.login(loginName, encryptedPassword);
-                call.enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        Log.d("TRap",response.code()+" Adrian chico guapo");
-                        if (response.code() == 200){
-                            User auxUser = new User();
-
-                            registrarUserEnSQLite();
-                            Animation animation= AnimationUtils.loadAnimation(MainActivity.this, R.anim.right_out);
-                            btnLogIn.startAnimation(animation);
-                            btnRecover.startAnimation(animation);
-                            etUsername.startAnimation(animation);
-                            etPwd.startAnimation(animation);
-                            tvPwd.startAnimation(animation);
-                            tvTittle.startAnimation(animation);
-                            switchRemember.startAnimation(animation);
-                            sonidoEncendido();
-                            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-                            intent.putExtra("user",response.body());
-                            startActivity(intent);
-
-                        }
-                        if (response.code() == 401){
-                            etUsername.setError("User not found");
-                            etUsername.requestFocus();
-                            sonidoError();
-                            stopAnimation();
-                        }
-                        if (response.code() == 404){
-                            etUsername.setError("User not found");
-                            etUsername.requestFocus();
-                            sonidoError();
-                            stopAnimation();
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-
-                        Log.d("TRap","TRapatoni "+t.getMessage());
-                        Toast.makeText(MainActivity.this, "MALAMENTE TRaP TRAP", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
+    private boolean comprobarEditText() {
+        boolean correct = true;
+        if(etPwd.getText().toString().isEmpty()){
+            etPwd.setError(getText(R.string.pwdNull));
+            correct=false;
+        }
+        if(etUsername.getText().toString().isEmpty()){
+            etUsername.setError(getText(R.string.usrNull));
+            correct=false;
+        }
+        return correct;
     }
 
     /**

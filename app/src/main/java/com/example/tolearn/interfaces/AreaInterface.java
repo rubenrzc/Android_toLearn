@@ -29,14 +29,15 @@ public interface AreaInterface {
     public Call <Void> create(@Body Area entity);
     /**
      * @param entity
+     * @return
      */
     @PUT("{id}")
-    public void edit(@Body Area entity);
+    public Call<Void> edit(@Body Area entity);
     /**
      * @param id
      */
     @DELETE("{id}")
-    public void remove(@Path("id") Integer id);
+    public Call<Void> remove(@Path("id") Integer id);
     /**
      * @return Areas
      */

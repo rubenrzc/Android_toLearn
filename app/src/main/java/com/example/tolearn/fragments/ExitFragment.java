@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.tolearn.MainActivity;
 import com.example.tolearn.MenuActivity;
 import com.example.tolearn.R;
 
@@ -73,6 +74,8 @@ public class ExitFragment extends Fragment {
                 animationView.setVisibility(View.VISIBLE);
                 animationView.playAnimation();
 
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
         dialogo1.setNegativeButton(R.string.btnnegative, new DialogInterface.OnClickListener() {
@@ -82,6 +85,8 @@ public class ExitFragment extends Fragment {
              * @param id
              */
             public void onClick(DialogInterface dialogo1, int id) {
+                Intent intent = new Intent(getContext(), MenuActivity.class);
+                startActivity(intent);
                 dialogo1.dismiss();
             }
         });

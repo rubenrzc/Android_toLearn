@@ -19,8 +19,11 @@
         <activity android:name=".RecoverPassword"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".MenuActivity"
+            android:noHistory="true"
             android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:noHistory="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

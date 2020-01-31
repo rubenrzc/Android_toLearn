@@ -10,7 +10,9 @@
     <string name="login">LogIn</string>
     <string name="recover">Recover password</string>
     <string name="open">Open</string>
-    <string name="close">Close</string>
+    <string name="close">Close</string>pwdNull
+    <string name="pwdNull">Introduce password</string>
+    <string name="usrNull">Introduce username</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -18,7 +20,7 @@
     <!-- departmenr admin -->
     <string name="btnRecover">Recover password</string>
     <string name="etEmail">Email</string>
-    <string name="tvRecover">Insert ypur email to recover password</string>
+    <string name="tvRecover">Insert your email to recover password</string>
     <string name="bntCancel">Cancel</string>
 
     <!-- Fragments -->
@@ -89,6 +91,11 @@
     <string name="etNameArea">Area name</string>
     <string name="btnUploadArea">Upload area</string>
     <string name="deletedArea">Area have been deleted</string>
+    <string name="deleteArea">Yes, delete</string>
+    <string name="btnReturn">Return</string>
+    <string name="areaUpdated">Area have been updated</string>
+    <string name="returnMenu">Return</string>
+    <string name="questionReturn">Do you want to return to the menu?</string>
 
     <!-- check users -->
     <string name="btnAddUser">New user</string>

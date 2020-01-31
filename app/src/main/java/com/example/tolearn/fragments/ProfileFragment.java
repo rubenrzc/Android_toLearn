@@ -129,8 +129,12 @@ public class ProfileFragment extends Fragment {
         etUsernameProf.setText(user.getLogin());
         etEmail.setText(user.getEmail());
         etFullName.setText(user.getFullname());
-        tvCompProf.setText(user.getCompany().getName());
 
+        if(user.getCompany().getName().toString().equals(null)){
+            tvCompProf.setText("ROOT_USER");
+        }else{
+            tvCompProf.setText(user.getCompany().getName());
+        }
         btnChangePwd.setOnClickListener(new View.OnClickListener() {
             /**
              * This onClick throws an alertDialog

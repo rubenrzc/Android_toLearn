@@ -10,6 +10,8 @@
     <string name="recover">Recuperar contraseña</string>
     <string name="open">Abrir</string>
     <string name="close">Cerrar</string>
+    <string name="pwdNull">Introduce password</string>
+    <string name="usrNull">Introduce username</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -86,6 +88,11 @@
     <string name="etNameArea">Nombre de area</string>
     <string name="btnUploadArea">Actualizar area</string>
     <string name="deletedArea">El area ha sido eliminada</string>
+    <string name="btnReturn">Volver</string>
+    <string name="areaUpdated">El area ha sido modificada</string>
+    <string name="deleteArea">Si, borrar</string>
+    <string name="returnMenu">Volver</string>
+    <string name="questionReturn">¿Desea volver al menu?</string>
 
     <!-- check users -->
     <string name="btnAddUser">nuevo usuario</string>

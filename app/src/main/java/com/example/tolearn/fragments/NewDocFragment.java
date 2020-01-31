@@ -1,15 +1,10 @@
 package com.example.tolearn.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +17,6 @@ import android.widget.Spinner;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.tolearn.R;
 import com.example.tolearn.pojos.Document;
-import com.example.tolearn.pojos.DocumentStatus;
 
 /**
  * @Author Andoni
@@ -69,7 +63,7 @@ public class NewDocFragment extends Fragment {
         multilineEtDesc = (EditText)root.findViewById(R.id.multilineEtDesc);
         imgBtnAdd = (ImageButton)root.findViewById(R.id.imgBtnAdd);
         bntUpload = (Button)root.findViewById(R.id.bntUpload);
-        btnDiscard = (Button)root.findViewById(R.id.btnDiscardDep);
+        btnDiscard = (Button)root.findViewById(R.id.btnReturn);
         rButtonVisible = (RadioButton)root.findViewById(R.id.rButtonVisible);
         spinnerArea = (Spinner)root.findViewById(R.id.spinnerArea);
 
