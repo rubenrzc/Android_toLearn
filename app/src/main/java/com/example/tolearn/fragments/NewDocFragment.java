@@ -2,9 +2,11 @@ package com.example.tolearn.fragments;
 
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -117,8 +119,7 @@ public class NewDocFragment extends Fragment {
                     animationView.playAnimation();
                 }
 
-                //comprobarDatosDocumento();
-                //generarNuevoDocumento();
+                comprobarDatosDocumento();
             }
         });
         return root;
@@ -160,7 +161,6 @@ public class NewDocFragment extends Fragment {
                         Toast.makeText(getContext(),"Documento añadido",Toast.LENGTH_SHORT).show();
                     }if(response.code()==204){
                         Toast.makeText(getContext(),"Documento añadido",Toast.LENGTH_SHORT).show();
-
                     }
                 }
             }
@@ -176,6 +176,14 @@ public class NewDocFragment extends Fragment {
      *  Not implementet yet
      */
     private void comprobarDatosDocumento() {
-
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Sorry...This is no implemented yet")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

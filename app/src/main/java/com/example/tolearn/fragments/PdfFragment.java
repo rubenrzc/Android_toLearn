@@ -48,7 +48,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * @Author Andoni
+ * @Author Fran
  * This fragment get all documents and
  * it show them on a RecyclerView
  */
