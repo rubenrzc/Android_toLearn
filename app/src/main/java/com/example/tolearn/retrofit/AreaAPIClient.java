@@ -1,22 +1,32 @@
 package com.example.tolearn.retrofit;
+import com.example.tolearn.R;
 import com.example.tolearn.interfaces.AreaInterface;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
+
 import static retrofit2.converter.simplexml.SimpleXmlConverterFactory.create;
 
+/**
+ * @Author Andoni
+ */
 public class AreaAPIClient {
-    private static String API_BASE_URL = "http://localhost:8080/grupo5_reto2/";
+    private static String API_BASE_URL = "http://192.168.20.183:8080/grupo5_reto2_server-development_SERVER_Fran/webresources/area/";
+    /**
+     * This method convert the XML
+     * @return a AreaInterface
+     */
     public static AreaInterface getClient(){
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-        Retrofit.Builder builder = new Retrofit.Builder()
+        Retrofit builder = new Retrofit.Builder()
                 .baseUrl(API_BASE_URL)
-                .addConverterFactory(
-                        create()
-                );
-        Retrofit retrofit = builder.client(httpClient.build()).build();
+                .addConverterFactory(SimpleXmlConverterFactory.create()).client(httpClient).build();
 
-        AreaInterface areaInterface = retrofit.create(AreaInterface.class);
+        AreaInterface areaInterface = builder.create(AreaInterface.class);
         return areaInterface;
     }
 }

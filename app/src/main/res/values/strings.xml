@@ -1,4 +1,8 @@
 <resources>
+
+    <!-- Main -->
+
+    <string name="switchRemember">Remember me</string>
     <string name="app_name">2dam2curious.toLearn</string>
     <string name="tittle">.ToLearn();</string>
     <string name="username">Username</string>
@@ -6,11 +10,29 @@
     <string name="login">LogIn</string>
     <string name="recover">Recover password</string>
     <string name="open">Open</string>
-    <string name="close">Close</string>
+    <string name="close">Close</string>pwdNull
+    <string name="pwdNull">Introduce password</string>
+    <string name="usrNull">Introduce username</string>
+    <string name="emailError">Introduce email</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- departmenr admin -->
+    <string name="btnRecover">Recover password</string>
+    <string name="etEmail">Email</string>
+    <string name="tvRecover">Insert your email to recover password</string>
+    <string name="bntCancel">Cancel</string>
+
     <!-- Fragments -->
+    <!-- PDf -->
+    <string name="search">Search </string>
+    <string name="toast1">Document have been downloaded</string>
+    <string name="toast2">Document not found</string>
+    <string name="searchError">Need to insert Area</string>
+    <string name="documentDownloaded">Document downloaded</string>
+
+
     <!-- Profile -->
     <string name="btnNewImage">change profile picture</string>
     <string name="tvUsernameProfile">Username: </string>
@@ -19,7 +41,13 @@
     <string name="tvBithDate">Birth date: </string>
     <string name="tvCompany">Company: </string>
     <string name="tvCompProf">User company </string>
-
+    <string name="btnChangePwd">Click here to change password</string>
+    <string name="errorChangePwd">Password does not mach</string>
+    <string name="Repeatpwd">Confirm password</string>
+    <string name="Changepwd">Password</string>
+    <string name="userUpdated">User have been updated</string>
+    <string name="internalError">Server internal error</string>
+    <string name="pwdChanged">Password have been changed</string>
 
     <!-- New Doc -->
     <string name="etTittle">Tittle</string>
@@ -28,9 +56,53 @@
     <string name="btnDiscard">Discard</string>
     <string name="visible">Visible</string>
     <string name="area">Select area</string>
+    <string name="titleError">Introduce title</string>
+    <string name="descError">Introduce description</string>
 
-    <!-- New Doc -->
-    <string name="search">Search</string>
+    <!--  exit fragment -->
+    <string name="dialog1Title">Warning</string>
+    <string name="dialog1Question">Are you sure you want to exit?</string>
+    <string name="btnpositive">Yes, I am sure</string>
+    <string name="btnnegative">Cancel</string>
 
+
+    <!-- departmenr admin -->
+    <string name="DepTitle">Department administration</string>
+    <string name="btnAddDepart">New department</string>
+    <string name="addDep">Introduce department name</string>
+    <string name="add">Add</string>
+    <string name="departEx">example</string>
+
+
+    <!-- departmenr profile -->
+    <string name="etNameDep">Department name</string>
+    <string name="btnUploadDep">Upload department</string>
+    <string name="btnSave">Save</string>
+    <string name="warning">Warning</string>
+    <string name="areYouSure">Are you sure you want to discard de operation?</string>
+    <string name="yes">Yes, i want to discard</string>
+    <string name="no">No</string>
+    <string name="delete">Are you sure you want to delete it?</string>
+    <string name="deleted">Department have been deleted</string>
+
+    <!-- area administrate -->
+    <string name="btnAddArea">New area</string>
+    <string name="addArea">Introduce area name</string>
+    <string name="areaCreated">Area have been created</string>
+    <string name="introduceName">Need to introduce a name</string>
+
+    <!-- area profile -->
+    <string name="etNameArea">Area name</string>
+    <string name="btnUploadArea">Upload area</string>
+    <string name="deletedArea">Area have been deleted</string>
+    <string name="deleteArea">Yes, delete</string>
+    <string name="btnReturn">Return</string>
+    <string name="areaUpdated">Area have been updated</string>
+    <string name="returnMenu">Return</string>
+    <string name="questionReturn">Do you want to return to the menu?</string>
+
+    <!-- check users -->
+    <string name="btnAddUser">New user</string>
+    <string name="btnAceptAll">Verify all</string>
 
 </resources>

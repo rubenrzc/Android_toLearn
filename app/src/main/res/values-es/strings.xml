@@ -1,0 +1,104 @@
+<resources>
+    <!-- Main -->
+
+    <string name="switchRemember">Recuerdame</string>
+    <string name="app_name">2dam2curious.toLearn</string>
+    <string name="tittle">.ToLearn();</string>
+    <string name="username">Nombre de Usuario</string>
+    <string name="pwd">Contraseña</string>
+    <string name="login">LogIn</string>
+    <string name="recover">Recuperar contraseña</string>
+    <string name="open">Abrir</string>
+    <string name="close">Cerrar</string>
+    <string name="pwdNull">Introduce password</string>
+    <string name="usrNull">Introduce username</string>
+    <string name="emailError">Introduce email</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- departmenr admin -->
+    <string name="btnRecover">Recordar contraseña</string>
+    <string name="etEmail">Email</string>
+    <string name="tvRecover">Inserta tu email para recuperar</string>
+    <string name="bntCancel">Cancelar</string>
+
+    <!-- Fragments -->
+    <!-- PDf -->
+    <string name="search">Busqueda</string>
+    <string name="toast1">El documento ha sido descargado</string>
+    <string name="toast2">Documento no encontrado</string>
+    <string name="searchError">Inserte un area</string>
+    <string name="documentDownloaded">Documento descargado con exito</string>
+
+    <!-- Profile -->
+    <string name="btnNewImage">Cambiar imagen</string>
+    <string name="tvUsernameProfile">Nombre de usuario : </string>
+    <string name="tvEmail">Email: </string>
+    <string name="tvFullname">Nombre: </string>
+    <string name="tvBithDate">Fecha Nac.: </string>
+    <string name="tvCompany">Compañia: </string>
+    <string name="tvCompProf">Compañia de usuario</string>
+    <string name="btnChangePwd">Clique aqui para cambiar contraseña</string>
+    <string name="errorChangePwd">No coinciden las contraseñas</string>
+    <string name="Repeatpwd">Confirmar contraseña</string>
+    <string name="Changepwd">Contraseña</string>
+    <string name="userUpdated">Actualizado con exito</string>
+    <string name="internalError">Error interno del server</string>
+    <string name="pwdChanged">La contraseña ha sido cambiada</string>
+
+    <!-- New Doc -->
+    <string name="etTittle">Titulo</string>
+    <string name="multilineEtDesc">Descripcion</string>
+    <string name="bntUpload">Cargar documento</string>
+    <string name="btnDiscard">Descartar</string>
+    <string name="visible">Visible</string>
+    <string name="area">Seleccion area</string>
+    <string name="titleError">Introduce titulo</string>
+    <string name="descError">Introduce descripcion</string>
+
+    <!--  exit fragment -->
+    <string name="dialog1Title">Aviso</string>
+    <string name="dialog1Question">¿Estas seguro que desea salir?</string>
+    <string name="btnpositive">Confirmar</string>
+    <string name="btnnegative">Cancelar</string>
+
+    <!-- departmenr admin -->
+    <string name="DepTitle">Administracion de area</string>
+    <string name="btnAddDepart">Nuevo departamento</string>
+    <string name="addDep">Introduce departamento</string>
+    <string name="add">Añadir</string>
+    <string name="departEx">ejemplo</string>
+
+
+    <!-- departmenr profile -->
+    <string name="etNameDep">Nombre de departamento</string>
+    <string name="btnUploadDep">Subir archivo</string>
+    <string name="btnSave">Guardar</string>
+    <string name="warning">Peligro</string>
+    <string name="areYouSure">Desea cancelar la operacion</string>
+    <string name="yes">Si deseo cancelar la operacion</string>
+    <string name="no">No</string>
+    <string name="delete">Borrar</string>
+    <string name="deleted">El departamento ha sido borrado</string>
+
+    <!-- area administrate -->
+    <string name="btnAddArea">Nueva area</string>
+    <string name="addArea">Introduce area name</string>
+    <string name="areaCreated">El area ha sido creada</string>
+    <string name="introduceName">Intoduzca un nombre</string>
+
+    <!-- area profile -->
+    <string name="etNameArea">Nombre de area</string>
+    <string name="btnUploadArea">Actualizar area</string>
+    <string name="deletedArea">El area ha sido eliminada</string>
+    <string name="btnReturn">Volver</string>
+    <string name="areaUpdated">El area ha sido modificada</string>
+    <string name="deleteArea">Si, borrar</string>
+    <string name="returnMenu">Volver</string>
+    <string name="questionReturn">¿Desea volver al menu?</string>
+
+    <!-- check users -->
+    <string name="btnAddUser">nuevo usuario</string>
+    <string name="btnAceptAll">Verificar todo</string>
+</resources>

@@ -5,17 +5,11 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_pdf"
     tools:ignore="UnusedNavigation">
-
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.example.tolearn.fragments.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@id/nav_newArea"
-        android:name="com.example.tolearn.fragments.NewAreaFragment"
-        android:label="New area"
-        tools:layout="@layout/fragment_new_area"/>
     <fragment
         android:id="@id/nav_pdf"
         android:name="com.example.tolearn.fragments.PdfFragment"
@@ -29,7 +23,20 @@
     <fragment
         android:id="@id/nav_exit"
         android:name="com.example.tolearn.fragments.ExitFragment"
-        android:label="Exit"
+        android:label="Close session"
         tools:layout="@layout/fragment_exit"/>
-
+    <fragment
+        android:id="@+id/nav_areaAdmin"
+        android:name="com.example.tolearn.fragments.AreaAdminFragment"
+        android:label="Area administration"
+        tools:layout="@layout/fragment_area_admin">
+        <action
+            android:id="@+id/action_nav_areaAdmin_to_nav_areaProfile"
+            app:destination="@id/nav_areaProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_areaProfile"
+        android:name="com.example.tolearn.fragments.AreaProfile"
+        android:label="Area profile"
+        tools:layout="@layout/fragment_area_profile"/>
 </navigation>

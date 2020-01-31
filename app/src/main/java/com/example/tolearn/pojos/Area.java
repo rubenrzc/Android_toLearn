@@ -5,31 +5,44 @@
  */
 package com.example.tolearn.pojos;
 
+import com.example.tolearn.pojos.plural.Departments;
+import com.example.tolearn.pojos.plural.Documents;
+
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import java.io.Serializable;
 import java.util.Collection;
-
+import java.util.Set;
 
 
 /**
- *
  * @author Andoni
  */
+//@Root(name="area")
 public class Area implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    //@Element(name="id")
     private int id;
-    
+    //@Element(name="name")
     private String name;
+    //@ElementList(name = "departments", inline = true)
+    private Set<Department> departments;
+    //@ElementList(name = "documents", inline = true)
+    private Set<Document> documents;
 
-    private Collection<Department> departments;
-
-    private Collection<Document> documents;
-
+    /**
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
@@ -49,27 +62,25 @@ public class Area implements Serializable {
     /**
      * @return the departments
      */
-    
-    public Collection<Department> getDepartments() {
+    public Set<Department> getDepartments() {
         return departments;
     }
     /**
      * @param departments the departments to set
      */
-    public void setDepartments(Collection<Department> departments) {
+    public void setDepartments(Set<Department> departments) {
         this.departments = departments;
     }
     /**
      * @return the documents
      */
-    
-    public Collection<Document> getDocuments() {
+    public Set<Document> getDocuments() {
         return documents;
     }
     /**
      * @param documents the documents to set
      */
-    public void setDocuments(Collection<Document> documents) {
+    public void setDocuments(Set<Document> documents) {
         this.documents = documents;
     }
 

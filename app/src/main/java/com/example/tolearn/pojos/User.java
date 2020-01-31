@@ -5,42 +5,55 @@
  */
 package com.example.tolearn.pojos;
 
+import android.text.Editable;
+
+import com.example.tolearn.utilities.Convertors;
+
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementArray;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 /**
- *
  * @author Francisco Romero Alonso
  */
-
+//@Root(name="user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    //@Element(name="id")
     private int id;
+    //@Element(name="login")
     private String login;
+    //@Element(name="email")
     private String email;
-
+    //@Element(name="fullName")
     private String fullname;
-
+    //@Element(name="status")
     private UserStatus status;
-
+    //@Element(name="privilege")
     private UserPrivilege privilege;
-
+    //@Element(name="password")
     private String password;
-
-    private byte[] photo;
-
+    //@ElementList(name = "photo", inline = true)
+    //@ElementArray(name = "profilePicture",required = false)
+    private String photo;
+    //@Element(name="lastAcces")
     private String lastAccess;
-
+    //@Element(name="lastPasswordChange")
     private String lastPassWordChange;
-
+    //@Element(name="bDate")
     private String bDate;
-
+    //@Element(name="company")
     private Company company;
-
-    private Collection<Document> documents;
+    //@ElementList(name = "documents", inline = true)
+    private Set<Document> documents;
 
     /**
      *
@@ -120,14 +133,14 @@ public class User implements Serializable {
      * @return
      */
 
-    public Collection<Document> getDocuments() {
+    public Set<Document> getDocuments() {
         return documents;
     }
 
     /**
      * @param documents
      */
-    public void setDocuments(Collection<Document> documents) {
+    public void setDocuments(Set<Document> documents) {
         this.documents = documents;
     }
 
@@ -234,13 +247,15 @@ public class User implements Serializable {
      * @return
      */
     public byte[] getPhoto() {
+        Convertors con = new Convertors();
+        byte[] photo = con.hexStringToByteArray(this.photo);
         return photo;
     }
 
     /**
      * @param photo
      */
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 

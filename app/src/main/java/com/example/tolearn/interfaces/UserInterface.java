@@ -7,6 +7,7 @@ package com.example.tolearn.interfaces;
 
 
 import com.example.tolearn.pojos.User;
+import com.example.tolearn.pojos.plural.Users;
 
 import java.util.Collection;
 
@@ -19,17 +20,17 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
- *
- * @author 2dam
+ * @author Fran
  */
 public interface UserInterface {
-
-    
+    /**
+     * @param id
+     * @return user
+     */
     @GET("{id}")
     public User find(@Path("id") int id);
     
     /**
-     * 
      * @param login
      * @param password
      * @return 
@@ -38,34 +39,39 @@ public interface UserInterface {
     Call <User> login(@Path("login") String login,@Path("password") String password);
 
     /**
-     * 
-     * @return 
+     * @return users
      */
-    @GET
-    public Call<Collection<User>> findAll();
+    @GET(".")
+    public Call<Users> findAll();
 
     /**
-     *
+     * @param user
      */
     @PUT("{email}")
-    public void recoverPassword(@Body User user);
-    
+    public Call <Void> recoverPassword(@Body User user);
     /**
-     * 
      * @param user 
      */
     @POST
     public  Call <Void> create(@Body User user);
 
     /**
-     * 
      * @param user 
      */
-    @PUT
-    public void edit(@Body User user);
-
+    @PUT("{user}")
+    public Call <Void> edit(@Body User user);
+    /**
+     * @param id
+     * @return id
+     */
     @DELETE("{id}")
-    public void remove(@Path("id")Integer id);
+    public Call <Void> remove(@Path("id")Integer id);
+    /**
+     *
+     * @return
+     */
+    @GET("getPublicKey/")
+    public Call<String> getPublicKey();
     
      
     

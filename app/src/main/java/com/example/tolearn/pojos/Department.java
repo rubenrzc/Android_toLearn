@@ -5,35 +5,41 @@
  */
 package com.example.tolearn.pojos;
 
+
+
+import org.simpleframework.xml.ElementList;
+
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 
 /**
  *
  * @author Yeray
  */
-
-
+//@Root(name="department")
 public class Department implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    //@Element(name="id")
     private int id;
     /**
      * Department name
      */
-
+    //@Element(name="name")
     private String name;
 
     /**
      * Companies collection
      */
-
-    private Collection<Company> companies;
+    //@ElementList(name = "companies", inline = true)
+    private Set<Company> companies;
 
     /**
      * Areas collection
      */
-    private Collection<Area> areas;
+
+    //@ElementList(name = "areas", inline = true)
+    private Set<Area> areas;
 
     public int getId() {
         return id;
@@ -61,29 +67,29 @@ public class Department implements Serializable {
      * @return the companies
      */
 
-    public Collection<Company> getCompanies() {
+    public Set<Company> getCompanies() {
         return companies;
     }
 
     /**
      * @param companies the companies to set
      */
-    public void setCompanies(Collection<Company> companies) {
+    public void setCompanies(Set<Company> companies) {
         this.companies = companies;
     }
 
-    /**
+    /**0
      * @return the areas
      */
 
-    public Collection<Area> getAreas() {
+    public Set<Area> getAreas() {
         return areas;
     }
 
     /**
      * @param areas the areas to set
      */
-    public void setAreas(Collection<Area> areas) {
+    public void setAreas(Set<Area> areas) {
         this.areas = areas;
     }
 
